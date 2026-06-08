@@ -11,3 +11,16 @@ Built in C using the miniLibX graphics library, this project serves as a deep di
 To compile the project, simply run the following command at the root of the repository:
 ```bash
 make
+```
+To Clean the object run this command
+```bash
+clean
+```
+To clean object with Name executable run this command
+```bash
+flcean
+```
+You wan't delete object file with the executable name and make again run this
+```bash
+make re
+```
