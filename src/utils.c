@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/10 10:08:30 by canoduran        ###   ########.fr       */
+/*   Created: 2026/06/10 09:49:27 by canoduran         #+#    #+#             */
+/*   Updated: 2026/06/10 10:07:57 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+# include "../include/cub3d.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <math.h>
-# include "../libft/libft.h"
+int	ft_comp(char *line, char *verif)
+{
+	char *check_argument;
+	int	i;
 
-/*utils.c*/
-int	ft_comp(char *line, char *verif);
-
-#endif
+	i = 0;
+	check_argument = ft_strchr(line, '.');
+	if (!check_argument)
+		return (1);
+	while (check_argument[i] || verif[i])
+	{
+		if (check_argument[i] != verif[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}

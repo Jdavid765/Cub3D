@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 19:08:22 by canoduran         #+#    #+#              #
-#    Updated: 2026/06/08 21:12:06 by canoduran        ###   ########.fr        #
+#    Updated: 2026/06/10 09:55:11 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,11 @@ LIBFT     = $(LIBFT_DIR)/libft.a
 
 # --- DIRECTORIES ---
 DIR_SRC     = src
-DIR_CORE    = $(DIR_SRC)/core
 OBJ_DIR     = obj
 
 # --- SOURCES ---
-SRC = $(DIR_CORE)/main.c 
+SRC = $(DIR_SRC)/main.c \
+	$(DIR_SRC)/utils.c 
 
 # --- OBJECTS ---
 OBJ = $(SRC:.c=.o)
