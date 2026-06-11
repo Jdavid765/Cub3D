@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 19:08:22 by canoduran         #+#    #+#              #
-#    Updated: 2026/06/10 09:55:11 by canoduran        ###   ########.fr        #
+#    Updated: 2026/06/11 15:32:13 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ NAME     = cub3d
 CFLAGS   = -Wall -Wextra -Werror
 LIBFT_DIR = libft
 LIBFT     = $(LIBFT_DIR)/libft.a
+GNL_DIR = get-next-line
 
 # --- DIRECTORIES ---
 DIR_SRC     = src
@@ -30,7 +31,9 @@ OBJ_DIR     = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
-	$(DIR_SRC)/utils.c 
+	$(DIR_SRC)/check_filename.c \
+	$(GNL_DIR)/get_next_line.c \
+	$(GNL_DIR)/get_next_line_utils.c 
 
 # --- OBJECTS ---
 OBJ = $(SRC:.c=.o)

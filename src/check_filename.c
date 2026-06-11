@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:49:27 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/10 10:07:57 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/11 15:30:47 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/cub3d.h"
 
-int	ft_comp(char *line, char *verif)
+int	check_filename(char *line, char *verif)
 {
 	char *check_argument;
 	int	i;
