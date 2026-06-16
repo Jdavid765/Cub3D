@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 19:08:22 by canoduran         #+#    #+#              #
-#    Updated: 2026/06/15 15:48:13 by canoduran        ###   ########.fr        #
+#    Updated: 2026/06/16 18:29:59 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_SRC)/init.c \
 	$(DIR_PARSING)/parsing.c \
 	$(DIR_PARSING)/utils.c \
+	$(DIR_PARSING)/floodfil.c \
 	$(GNL_DIR)/get_next_line.c \
 	$(GNL_DIR)/get_next_line_utils.c 
 

@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:48:29 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/15 16:57:22 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/16 19:08:43 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int ac, char **av)
 			return (printf("Error when open the file\n"), 1);
 		if (check_player(&game))
 			return (printf("Error in the map\n"), 1);
-		for (int i = 0; game.map.grid[i]; i++)
-			printf("%s\n", game.map.grid[i]);
+		// for (int i = 0; game.map.cpy_grid[i]; i++)
+		// 	printf("%s\n", game.map.cpy_grid[i]);
 	}
 	else
 		return (printf("Error bad input\n"), 1);

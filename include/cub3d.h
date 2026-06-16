@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/15 16:47:43 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/16 19:57:33 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef enum e_car_points
 typedef struct s_map
 {
 	char	**grid;
+	char	**cpy_grid;
 }		t_map;
 
 typedef struct s_player
@@ -42,11 +43,19 @@ typedef struct s_player
 	t_car_points	cardinal;
 }		t_player;
 
+typedef struct s_floodfil
+{
+	int		status;
+	char	letter;
+}		t_floodfil;
+
 typedef struct s_game
 {
 	char			*filename;
+	int				count_line;
 	t_map			map;
 	t_player		player;
+	t_floodfil		floodfil;
 }		t_game;
 
 /*check_filename.c*/
@@ -66,5 +75,9 @@ int		check_other_player(t_game *game, char letter, int x, int y);
 
 /*parsing/parsing.c*/
 int		check_player(t_game *game);
+
+/*parsing/floodfil.c*/
+int		cpy_the_map(t_game *game);
+int		floodfil(t_game *game, int x, int y);
 
 #endif

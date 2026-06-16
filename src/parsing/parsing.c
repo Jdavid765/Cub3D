@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 12:22:57 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/15 16:47:56 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/16 19:41:33 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ int	check_player(t_game *game)
 		y++;
 	}
 	if (game->player.cardinal == 0)
+		return (1);
+	if (cpy_the_map(game))
+		return (1);
+	if (floodfil(game, game->player.x, game->player.y) != 0)
 		return (1);
 	return (0);
 }

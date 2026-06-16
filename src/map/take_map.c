@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 12:21:40 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/13 12:21:04 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/16 18:22:13 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	add_map_in_grid(t_game *game, int count_lines, int fd)
 			return (1);
 		position++;
 	}
+	game->count_line = count_lines;
 	game->map.grid[position] = NULL;
 	return (0);
 }

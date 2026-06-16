@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 15:46:26 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/15 16:55:38 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/16 19:41:07 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	check_other_player(t_game *game, char letter, int x, int y)
 		return (1);
 	game->player.x = x;
 	game->player.y = y;
+	game->floodfil.letter = game->map.grid[y][x];
 	if (letter == 'N')
 		game->player.cardinal = north;
 	else if (letter == 'S')
