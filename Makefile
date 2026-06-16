@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/08 19:08:22 by canoduran         #+#    #+#              #
-#    Updated: 2026/06/11 15:32:13 by canoduran        ###   ########.fr        #
+#    Updated: 2026/06/15 15:48:13 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,17 @@ GNL_DIR = get-next-line
 
 # --- DIRECTORIES ---
 DIR_SRC     = src
+DIR_MAP	    = $(DIR_SRC)/map
+DIR_PARSING = $(DIR_SRC)/parsing
 OBJ_DIR     = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
-	$(DIR_SRC)/check_filename.c \
+	$(DIR_MAP)/check_filename.c \
+	$(DIR_MAP)/take_map.c \
+	$(DIR_SRC)/init.c \
+	$(DIR_PARSING)/parsing.c \
+	$(DIR_PARSING)/utils.c \
 	$(GNL_DIR)/get_next_line.c \
 	$(GNL_DIR)/get_next_line_utils.c 
 
