@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/16 19:57:33 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/20 22:02:02 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,11 @@ int		check_player(t_game *game);
 /*parsing/floodfil.c*/
 int		cpy_the_map(t_game *game);
 int		floodfil(t_game *game, int x, int y);
+
+/*clear/clear_core.c*/
+// void	ft_exit(t_game *game);
+
+/*clear/utils.c*/
+// void	free_table(t_game *game);
 
 #endif
