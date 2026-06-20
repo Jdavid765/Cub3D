@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 12:22:57 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/16 19:41:33 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/20 16:27:44 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_player(t_game *game)
 		return (1);
 	if (cpy_the_map(game))
 		return (1);
-	if (floodfil(game, game->player.x, game->player.y) != 0)
+	if (floodfil(game, game->player.x, game->player.y) == 1)
 		return (1);
 	return (0);
 }
