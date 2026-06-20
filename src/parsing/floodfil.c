@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:13:26 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/20 16:34:32 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/20 21:34:33 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	floodfil(t_game *game, int x, int y)
 {
 	if (game->floodfil.status == 10)
 		return (10);
-	if (game->map.cpy_grid[y][x] == 1 || game->map.cpy_grid[y][x] == 'V')
+	if (game->map.cpy_grid[y][x] == '1' || game->map.cpy_grid[y][x] == 'V')
 		return (1);
-	else if (game->map.cpy_grid[y][x] == 0 || game->map.cpy_grid[y][x] == game->floodfil.letter)
+	else if (game->map.cpy_grid[y][x] == '0' || game->map.cpy_grid[y][x] == game->floodfil.letter)
 		game->map.cpy_grid[y][x] = 'V';
 	else
 		return (game->floodfil.status = 10, 10);

@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:49:27 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/13 12:21:10 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/20 21:25:35 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_filename(char *line, char *verif, t_game *game)
 	int		i;
 
 	i = 0;
-	check_argument = ft_strchr(line, '.');
+	check_argument = ft_strrchr(line, '.');
 	if (!check_argument)
 		return (1);
 	while (check_argument[i] || verif[i])
