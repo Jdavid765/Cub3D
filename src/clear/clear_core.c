@@ -6,13 +6,13 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 21:39:37 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/20 22:01:19 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/21 00:32:16 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-// void	ft_exit(t_game *game)
-// {
-	
-// }
+void	ft_exit(t_game *game)
+{
+	free_grid(game);
+}

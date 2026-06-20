@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:13:26 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/20 21:34:33 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/06/21 00:37:34 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	cpy_the_map(t_game *game)
 	{
 		game->map.cpy_grid[i] = ft_strdup(game->map.grid[i]);
 		if (!game->map.cpy_grid[i])
-			return (1);
+			return (free_cpygrid(game, i), 1);
 		i++;
 	}
 	game->map.cpy_grid[i] = NULL;
