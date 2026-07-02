@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
+#    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/06/08 19:08:22 by canoduran         #+#    #+#              #
-#    Updated: 2026/06/15 15:48:13 by canoduran        ###   ########.fr        #
+#    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
+#    Updated: 2026/07/02 18:25:05 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 # --- COLORS ---
 RED      = \033[0;31m
@@ -17,29 +18,31 @@ GREEN    = \033[0;32m
 RESET    = \033[0m
 
 # --- VARIABLES ---
-OS = $(shell uname)
-CC       = cc
-NAME     = cub3d
-CFLAGS   = -Wall -Wextra -Werror
+OS        = $(shell uname)
+CC        = cc
+NAME      = cub3d
+CFLAGS    = -Wall -Wextra -Werror -I$(MLX42_DIR)/include
 LIBFT_DIR = libft
 LIBFT     = $(LIBFT_DIR)/libft.a
-GNL_DIR = get-next-line
+GNL_DIR   = get-next-line
+MLX42_DIR = MLX42
+MLX42     = $(MLX42_DIR)/build/libmlx42.a
 
 # --- DIRECTORIES ---
 DIR_SRC     = src
-DIR_MAP	    = $(DIR_SRC)/map
+DIR_MAP     = $(DIR_SRC)/map
 DIR_PARSING = $(DIR_SRC)/parsing
 OBJ_DIR     = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
-	$(DIR_MAP)/check_filename.c \
-	$(DIR_MAP)/take_map.c \
-	$(DIR_SRC)/init.c \
-	$(DIR_PARSING)/parsing.c \
-	$(DIR_PARSING)/utils.c \
-	$(GNL_DIR)/get_next_line.c \
-	$(GNL_DIR)/get_next_line_utils.c 
+      $(DIR_MAP)/check_filename.c \
+      $(DIR_MAP)/take_map.c \
+      $(DIR_SRC)/init.c \
+      $(DIR_PARSING)/parsing.c \
+      $(DIR_PARSING)/utils.c \
+      $(GNL_DIR)/get_next_line.c \
+      $(GNL_DIR)/get_next_line_utils.c
 
 # --- OBJECTS ---
 OBJ = $(SRC:.c=.o)
@@ -63,17 +66,18 @@ COUNTER = 0
 		"$(PROG)" "$<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-# --------------------------------------------------------
-
-
 # --- RULES ---
-all : $(LIBFT) $(NAME)
+all : $(LIBFT) $(MLX42) $(NAME)
 
 $(LIBFT):
 	@make -s -C $(LIBFT_DIR) --no-print-directory
 
-$(NAME): $(LIBFT) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(INCLUDES) -o $(NAME)
+$(MLX42):
+	@cmake -B $(MLX42_DIR)/build $(MLX42_DIR)
+	@make -C $(MLX42_DIR)/build -j4 --no-print-directory
+
+$(NAME): $(LIBFT) $(MLX42) $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX42) -lglfw -lm -o $(NAME)
 
 clean:
 	@printf "$(RED)Cleaning object files...$(RESET)\n"
@@ -83,6 +87,7 @@ clean:
 fclean: clean
 	@printf "$(RED)Removing executable $(NAME)...$(RESET)\n"
 	@rm -f $(NAME)
+	@rm -rf $(MLX42_DIR)/build
 	@make -s fclean -C $(LIBFT_DIR) --no-print-directory
 
 re : fclean all

@@ -18,8 +18,12 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
+# include "MLX42/MLX42.h"
 # include "../libft/libft.h"
 # include "../get-next-line/get_next_line.h"
+
+# define WIDTH  1920
+# define HEIGHT 1080
 
 typedef enum e_car_points
 {
@@ -33,12 +37,18 @@ typedef enum e_car_points
 typedef struct s_map
 {
 	char	**grid;
+	int		width;
+	int		height;
 }		t_map;
 
 typedef struct s_player
 {
-	int				x;
-	int				y;
+	double			x;
+	double			y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 	t_car_points	cardinal;
 }		t_player;
 
@@ -47,6 +57,18 @@ typedef struct s_game
 	char			*filename;
 	t_map			map;
 	t_player		player;
+	char			*no;
+	char			*so;
+	char			*ea;
+	char			*we;
+	int				floor_color;
+	int				ceiling_color;
+	mlx_t			*mlx;
+	mlx_image_t		*image;
+	mlx_texture_t	*t_no;
+	mlx_texture_t	*t_so;
+	mlx_texture_t	*t_ea;
+	mlx_texture_t	*t_we;
 }		t_game;
 
 /*check_filename.c*/
