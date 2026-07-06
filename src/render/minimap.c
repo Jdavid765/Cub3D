@@ -1,20 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/12 13:09:45 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/02 18:51:40 by pucci17pink      ###   ########.fr       */
+/*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
+/*   Updated: 2026/07/06 15:34:25 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	init(t_game *game)
-{
-	ft_bzero(game);
-	ft_bzero(game->player);
-	ft_bzero(game->map);
-}
+
