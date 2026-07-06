@@ -6,11 +6,11 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:27:29 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/07/06 15:37:31 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/07/06 15:47:51 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 
 /*  main loop called every frame by MLX42 */

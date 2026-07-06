@@ -6,7 +6,7 @@
 #    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/07/02 18:25:05 by pucci17pink      ###   ########.fr        #
+#    Updated: 2026/07/06 15:48:34 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,9 @@ OBJ_DIR     = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
+      $(DIR_SRC)/render/render.c \
+      $(DIR_SRC)/render/init_game.c \
+      $(DIR_SRC)/render/minimap.c \
       $(DIR_MAP)/check_filename.c \
       $(DIR_MAP)/take_map.c \
       $(DIR_SRC)/init.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/15 16:47:43 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/07/06 15:51:59 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 # define WIDTH  1920
 # define HEIGHT 1080
+# define TILE_SIZE 16
+# define C_WALL 0xFF444444
+# define C_PLAYER 0xFFFF0000
+# define C_PLAYER_DIR 0xFF00FF00
 
 typedef enum e_car_points
 {
@@ -88,5 +92,20 @@ int		check_other_player(t_game *game, char letter, int x, int y);
 
 /*parsing/parsing.c*/
 int		check_player(t_game *game);
+
+/*render/render.c*/
+void	set_north(t_player *p);
+void	set_south(t_player *p);
+void	set_east(t_player *p);
+void	set_west(t_player *p);
+void	set_player_dir(t_game *game);
+
+/*render/init_game.c*/
+void	hook_loop(void *param);
+int		init_game(t_game *game);
+
+/*render/minimap.c*/
+void	render_minimap(t_game *game);
+
 
 #endif
