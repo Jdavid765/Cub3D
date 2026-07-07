@@ -6,38 +6,37 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:27:29 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/07/06 15:47:51 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/07/07 16:51:33 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-
-/*  main loop called every frame by MLX42 */
-void	hook_loop(void *param)
+/*
+	main loop called every frame by minilibx
+*/
+int	hook_loop(void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
-	(void)game;
+	render_minimap(game);
+	return (0);
 }
 
-
 /*
-	init mlx42, create window and image,
-	 setup hooks, start game loop
+	init minilibx, create window,
+	setup hooks, start game loop
 */
 int	init_game(t_game *game)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
+	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (1);
-	game->image = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	if (!game->image)
+	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3D");
+	if (!game->win)
 		return (1);
-	mlx_image_to_window(game->mlx, game->image, 0, 0);
 	mlx_loop_hook(game->mlx, &hook_loop, game);
 	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
 	return (0);
 }

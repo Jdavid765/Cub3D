@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/06 15:51:59 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/07/07 16:47:12 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
-# include "MLX42/MLX42.h"
+# include "mlx/mlx.h"
 # include "../libft/libft.h"
 # include "../get-next-line/get_next_line.h"
 
@@ -68,6 +68,7 @@ typedef struct s_game
 	int				floor_color;
 	int				ceiling_color;
 	mlx_t			*mlx;
+	void			*win;
 	mlx_image_t		*image;
 	mlx_texture_t	*t_no;
 	mlx_texture_t	*t_so;
