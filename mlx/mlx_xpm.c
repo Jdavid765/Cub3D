@@ -50,7 +50,7 @@ unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)
 	while (src[count] != '\0')
 		++count;
 	i = 0;
-	while (src[i] != '\0' && i < (size - 1))
+	while (src[i] != '\0' && i < (size))
 	{
 		dest[i] = src[i];
 		++i;
@@ -131,7 +131,7 @@ int	mlx_int_xpm_set_pixel(t_img *img, char *data, int opp, int col, int x)
 }
 
 
-void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
+void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)(char *,int *,int))
 {
 		int		pos;
 		char	*line;
@@ -163,7 +163,9 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 		tab = 0;
 		pos = 0;
 		if (!(line = f(info,&pos,info_size)) ||
-						!(tab = mlx_int_str_to_wordtab(line)) || !(width = atoi(tab[0])) ||
+						!(tab = mlx_int_str_to_wordtab(line)) ||
+						!tab[0] || !tab[1] || !tab[2] || !tab[3] ||
+						!(width = atoi(tab[0])) ||
 						!(height = atoi(tab[1])) || !(nc = atoi(tab[2])) ||
 						!(cpp = atoi(tab[3])) )
 				RETURN;
@@ -336,7 +338,7 @@ void	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)
 {
 		t_img	*img;
 
-		if (img = mlx_int_parse_xpm(xvar,xpm_data,0,mlx_int_static_line))
+		if (img = mlx_int_parse_xpm(xvar,xpm_data,0,(void*)mlx_int_static_line))
 		{
 				*width = img->width;
 				*height = img->height;

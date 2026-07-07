@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/07 16:47:12 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/07/07 17:23:12 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
-# include "mlx/mlx.h"
-# include "../libft/libft.h"
-# include "../get-next-line/get_next_line.h"
+# include <stdint.h>
+# include <stdlib.h>
+# include "mlx.h"
+# include "libft.h"
+// # include "get_next_line.h"  /* TODO: add GNL */
 
 # define WIDTH  1920
 # define HEIGHT 1080
@@ -67,13 +69,13 @@ typedef struct s_game
 	char			*we;
 	int				floor_color;
 	int				ceiling_color;
-	mlx_t			*mlx;
+	void			*mlx;
 	void			*win;
-	mlx_image_t		*image;
-	mlx_texture_t	*t_no;
-	mlx_texture_t	*t_so;
-	mlx_texture_t	*t_ea;
-	mlx_texture_t	*t_we;
+	void			*image;
+	void			*t_no;
+	void			*t_so;
+	void			*t_ea;
+	void			*t_we;
 }		t_game;
 
 /*check_filename.c*/
@@ -94,7 +96,7 @@ int		check_other_player(t_game *game, char letter, int x, int y);
 /*parsing/parsing.c*/
 int		check_player(t_game *game);
 
-/*render/render.c*/
+/*render/player.c*/
 void	set_north(t_player *p);
 void	set_south(t_player *p);
 void	set_east(t_player *p);
@@ -102,11 +104,13 @@ void	set_west(t_player *p);
 void	set_player_dir(t_game *game);
 
 /*render/init_game.c*/
-void	hook_loop(void *param);
+int		hook_loop(void *param);
 int		init_game(t_game *game);
 
 /*render/minimap.c*/
 void	render_minimap(t_game *game);
 
+/*render/hooks.c*/
+int		key_handler(int keycode, void *param);
 
 #endif

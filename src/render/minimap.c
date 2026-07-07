@@ -6,15 +6,13 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/07/07 16:52:35 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/07/07 18:25:00 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
-/*
-	draw a filled TILE_SIZE×TILE_SIZE square at minimap position
-*/
+/*  draw a filled TILE_SIZE x TILE_SIZE square at minimap position */
 void	draw_tile(t_game *game, int map_x, int map_y, uint32_t color)
 {
 	int	x;
@@ -37,9 +35,7 @@ void	draw_tile(t_game *game, int map_x, int map_y, uint32_t color)
 	}
 }
 
-/*
-	draw the 2d minimap grid in the top-left corner of the window
-*/
+/*  draw the 2D minimap grid in the top-left corner of the window */
 void	render_minimap(t_game *game)
 {
 	int	map_x;

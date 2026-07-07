@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/06 15:27:29 by pucci17pink       #+#    #+#             */
+/*   Created: 2026/07/07 17:30:00 by pucci17pink       #+#    #+#             */
 /*   Updated: 2026/07/07 17:30:00 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*  main loop called every frame by minilibx */
-int	hook_loop(void *param)
+#define KEY_ESC 65307
+
+/*  close window and exit cleanly on ESC press */
+int	key_handler(int keycode, void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
-	render_minimap(game);
-	return (0);
-}
-
-/*  init minilibx, create window, setup hooks, start game loop */
-int	init_game(t_game *game)
-{
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		return (1);
-	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3D");
-	if (!game->win)
-		return (1);
-	mlx_loop_hook(game->mlx, hook_loop, game);
-	mlx_key_hook(game->win, key_handler, game);
-	mlx_loop(game->mlx);
+	if (keycode == KEY_ESC)
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		exit(0);
+	}
 	return (0);
 }

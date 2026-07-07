@@ -6,7 +6,7 @@
 #    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/07/06 15:48:34 by pucci17pink      ###   ########.fr        #
+#    Updated: 2026/07/07 17:25:26 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ RESET    = \033[0m
 OS        = $(shell uname)
 CC        = cc
 NAME      = cub3d
-CFLAGS    = -Wall -Wextra -Werror -I$(MLX42_DIR)/include
+CFLAGS    = -Wall -Wextra -Werror -I include -I mlx -I libft -I get_next_line
 LIBFT_DIR = libft
 LIBFT     = $(LIBFT_DIR)/libft.a
-GNL_DIR   = get-next-line
-MLX42_DIR = MLX42
-MLX42     = $(MLX42_DIR)/build/libmlx42.a
+GNL_DIR   = get_next_line
+MLX_DIR   = mlx
+MLX       = $(MLX_DIR)/libmlx.a
 
 # --- DIRECTORIES ---
 DIR_SRC     = src
@@ -36,16 +36,17 @@ OBJ_DIR     = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
-      $(DIR_SRC)/render/render.c \
+      $(DIR_SRC)/render/player.c \
       $(DIR_SRC)/render/init_game.c \
       $(DIR_SRC)/render/minimap.c \
-      $(DIR_MAP)/check_filename.c \
-      $(DIR_MAP)/take_map.c \
-      $(DIR_SRC)/init.c \
-      $(DIR_PARSING)/parsing.c \
-      $(DIR_PARSING)/utils.c \
-      $(GNL_DIR)/get_next_line.c \
-      $(GNL_DIR)/get_next_line_utils.c
+      $(DIR_SRC)/render/hooks.c \
+#      $(DIR_MAP)/check_filename.c \
+#      $(DIR_MAP)/take_map.c \
+#      $(DIR_SRC)/init.c \
+#      $(DIR_PARSING)/parsing.c \
+#      $(DIR_PARSING)/utils.c \
+#      $(GNL_DIR)/get_next_line.c \
+#      $(GNL_DIR)/get_next_line_utils.c
 
 # --- OBJECTS ---
 OBJ = $(SRC:.c=.o)
@@ -70,17 +71,17 @@ COUNTER = 0
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # --- RULES ---
-all : $(LIBFT) $(MLX42) $(NAME)
+all: $(LIBFT) $(MLX42) $(NAME)
 
 $(LIBFT):
 	@make -s -C $(LIBFT_DIR) --no-print-directory
 
-$(MLX42):
-	@cmake -B $(MLX42_DIR)/build $(MLX42_DIR)
-	@make -C $(MLX42_DIR)/build -j4 --no-print-directory
+$(MLX):
+	@make -s -C $(MLX_DIR) CFLAGS="-std=gnu89 -O2" libmlx.a --no-print-directory; true
 
-$(NAME): $(LIBFT) $(MLX42) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX42) -lglfw -lm -o $(NAME)
+
+$(NAME): $(LIBFT) $(MLX) $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
 
 clean:
 	@printf "$(RED)Cleaning object files...$(RESET)\n"
@@ -90,7 +91,6 @@ clean:
 fclean: clean
 	@printf "$(RED)Removing executable $(NAME)...$(RESET)\n"
 	@rm -f $(NAME)
-	@rm -rf $(MLX42_DIR)/build
 	@make -s fclean -C $(LIBFT_DIR) --no-print-directory
 
 re : fclean all
