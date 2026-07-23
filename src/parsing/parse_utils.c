@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 17:07:20 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/23 17:08:42 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/07/23 18:44:21 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int	is_config_line(char *line)
 		return (1);
 	return (0);
 }
+/*is fonction is looking if the id is line for path the texture
+and i permet for split_config_and_map for stop looking the texture
+and take the map*/
 
 int	free_table(char **raw, int count)
 {
@@ -60,3 +63,4 @@ int	all_configuration_found(t_game *game)
 		return (0);
 	return (1);
 }
+/*Is for looking i have the 4 texture and the 2 color if one miss i put return*/
