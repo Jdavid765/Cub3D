@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 12:22:57 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/20 21:23:27 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/07/23 18:15:56 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,5 @@ int	check_player(t_game *game)
 		return (1);
 	return (0);
 }
+/*Is looking all table for found the player if nobody
+is found i return error, same about floodfill*/

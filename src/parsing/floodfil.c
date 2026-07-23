@@ -6,11 +6,11 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:13:26 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/21 00:37:34 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/07/23 18:20:17 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	floodfil(t_game *game, int x, int y)
 {
@@ -18,7 +18,8 @@ int	floodfil(t_game *game, int x, int y)
 		return (10);
 	if (game->map.cpy_grid[y][x] == '1' || game->map.cpy_grid[y][x] == 'V')
 		return (1);
-	else if (game->map.cpy_grid[y][x] == '0' || game->map.cpy_grid[y][x] == game->floodfil.letter)
+	else if (game->map.cpy_grid[y][x] == '0'
+			|| game->map.cpy_grid[y][x] == game->floodfil.letter)
 		game->map.cpy_grid[y][x] = 'V';
 	else
 		return (game->floodfil.status = 10, 10);
@@ -30,10 +31,11 @@ int	floodfil(t_game *game, int x, int y)
 		return (10);
 	return (0);
 }
-// 10 = pour dire qu'il as rencontrer une lettre differentes dans la map ou map mal fermer
-// 1 = car il as rencontrer un mur ou est deja passer par la
-// 0 = pour dire que toute la map est bien fermer (succes)
-//Erreur ici j ai mal fais un truc je dois check
+/* 10 = is for tell i found other caracter in the map or not close
+1 = is because found a wall or is visited
+0 = is for tell all was good (succes)
+i look if the player can't exit the map and don't have space
+*/
 
 int	cpy_the_map(t_game *game)
 {
@@ -51,6 +53,7 @@ int	cpy_the_map(t_game *game)
 		i++;
 	}
 	game->map.cpy_grid[i] = NULL;
-	// game->map.cpy_grid[game->player.y][game->player.x] = 'V';
 	return (0);
 }
+/*i duplicate the original map for doing floodfil
+and modified the map i have visited with V*/

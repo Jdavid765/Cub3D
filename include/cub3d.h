@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/21 00:37:04 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/07/23 18:24:57 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ typedef enum e_car_points
 	east,
 	west
 }		t_car_points;
+
+typedef struct s_texture
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+}	t_texture;
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
 typedef struct s_map
 {
@@ -53,9 +68,14 @@ typedef struct s_game
 {
 	char			*filename;
 	int				count_line;
+	int				floor_set;
+	int				ceiling_set;
 	t_map			map;
 	t_player		player;
 	t_floodfil		floodfil;
+	t_texture		texture;
+	t_color			floor_color;
+	t_color			ceiling_color;
 }		t_game;
 
 /*check_filename.c*/
@@ -64,7 +84,6 @@ int		check_filename(char *line, char *verif, t_game *game);
 /*take_map.c*/
 int		open_file(t_game *filename);
 int		count_l(int fd);
-int		add_map_in_grid(t_game *game, int count_lines, int fd);
 
 /*init.c*/
 void	init(t_game *game);
@@ -75,6 +94,18 @@ int		check_other_player(t_game *game, char letter, int x, int y);
 
 /*parsing/parsing.c*/
 int		check_player(t_game *game);
+
+/*parsing/parse_texture.c*/
+int		pars_identifier(t_game *game, char *line);
+int		pars_color(t_color *color, int *set_flag, char *str);
+int		pars_texture(char **dest, char *path);
+int		pars_int(char **str, int *value);
+
+/*parsing/parse_utils.c*/
+int		is_empty_line(char *line);
+int		is_config_line(char *line);
+int		free_table(char **raw, int count);
+int		all_configuration_found(t_game *game);
 
 /*parsing/floodfil.c*/
 int		cpy_the_map(t_game *game);

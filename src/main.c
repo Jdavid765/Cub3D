@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:48:29 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/21 00:47:13 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/07/23 17:27:45 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	cub3d(t_game *game)
 		return (printf("Error in the map\n"), 1);
 	return (0);
 }
-
 
 int	main(int ac, char **av)
 {
