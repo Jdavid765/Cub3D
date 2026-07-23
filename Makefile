@@ -6,7 +6,7 @@
 #    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/07/07 17:25:26 by pucci17pink      ###   ########.fr        #
+#    Updated: 2026/07/16 16:42:02 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC = $(DIR_SRC)/main.c \
       $(DIR_SRC)/render/init_game.c \
       $(DIR_SRC)/render/minimap.c \
       $(DIR_SRC)/render/hooks.c \
+      $(DIR_SRC)/render/hooks_key.c \
 #      $(DIR_MAP)/check_filename.c \
 #      $(DIR_MAP)/take_map.c \
 #      $(DIR_SRC)/init.c \
@@ -49,7 +50,7 @@ SRC = $(DIR_SRC)/main.c \
 #      $(GNL_DIR)/get_next_line_utils.c
 
 # --- OBJECTS ---
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:$(DIR_SRC)/%.c=$(OBJ_DIR)/%.o)
 
 # --------------------------------------------------------
 #        BARRE DE PROGRESSION (ROSE) POUR COMPILATION
@@ -59,19 +60,20 @@ NB := $(words $(OBJ))
 BARLEN = 30
 COUNTER = 0
 
-%.o: %.c
+$(OBJ_DIR)/%.o: $(DIR_SRC)/%.c
+	@mkdir -p $(dir $@)
 	@$(eval COUNTER := $(shell echo $$(($(COUNTER) + 1))))
 	@$(eval PROG := $(shell echo $$(($(COUNTER) * 100 / $(NB))) ))
 	@$(eval FILLED := $(shell echo $$(($(PROG) * $(BARLEN) / 100)) ))
 	@$(eval EMPTY := $(shell echo $$(($(BARLEN) - $(FILLED))) ))
 	@printf "\r\033[35m[%s%s] %3s%%\033[0m  \033[90m%-40s\033[0m" \
-		$$(printf '#%.0s' $$(seq 1 $(FILLED))) \
-		$$(printf '.%.0s' $$(seq 1 $(EMPTY))) \
+		$$(printf "#%.0s" $$(seq 1 $(FILLED))) \
+		$$(printf ".%.0s" $$(seq 1 $(EMPTY))) \
 		"$(PROG)" "$<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # --- RULES ---
-all: $(LIBFT) $(MLX42) $(NAME)
+all: $(LIBFT) $(MLX) $(NAME)
 
 $(LIBFT):
 	@make -s -C $(LIBFT_DIR) --no-print-directory
@@ -79,13 +81,13 @@ $(LIBFT):
 $(MLX):
 	@make -s -C $(MLX_DIR) CFLAGS="-std=gnu89 -O2" libmlx.a --no-print-directory; true
 
-
 $(NAME): $(LIBFT) $(MLX) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
+	@echo
+	@$(CC) $(CFLAGS) $(OBJ) 2>/dev/null $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
 
 clean:
 	@printf "$(RED)Cleaning object files...$(RESET)\n"
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
 	@make -s clean -C $(LIBFT_DIR) --no-print-directory
 
 fclean: clean
