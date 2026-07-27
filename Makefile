@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
+#    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/07/27 13:08:50 by pucci17pink      ###   ########.fr        #
+#    Updated: 2026/07/27 13:55:07 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_CLEAR)/clear_core.c \
 	$(DIR_CLEAR)/utils.c \
 	$(GNL_DIR)/get_next_line.c \
-	$(GNL_DIR)/get_next_line_utils.c 
+	$(GNL_DIR)/get_next_line_utils.c \
       $(DIR_SRC)/render/player.c \
       $(DIR_SRC)/render/init_game.c \
       $(DIR_SRC)/render/minimap.c \
