@@ -14,8 +14,8 @@
 
 void	init(t_game *game)
 {
-	ft_bzero(game);
-	game->player.cardinal = none;
-	ft_bzero(game->player);
-	ft_bzero(game->map);
+	ft_bzero(game, sizeof(t_game));
+	ft_bzero(&game->player, sizeof(t_player));
+	ft_bzero(&game->map, sizeof(t_map));
+	game->player.facing = DIR_NONE;
 }

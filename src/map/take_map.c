@@ -36,6 +36,7 @@ char	**read_all_lines(int fd, int total_lines)
 int	build_map(t_game *game, char **raw, int start, int total)
 {
 	int	count;
+	int	len;
 	int	i;
 
 	count = total - start;
@@ -44,14 +45,19 @@ int	build_map(t_game *game, char **raw, int start, int total)
 	game->map.grid = malloc(sizeof(char *) * (count + 1));
 	if (!game->map.grid)
 		return (1);
+	game->map.width = 0;
 	i = 0;
 	while (i < count)
 	{
 		game->map.grid[i] = raw[start + i];
 		raw[start + i] = NULL;
+		len = ft_strlen(game->map.grid[i]);
+		if (len > game->map.width)
+			game->map.width = len;
 		i++;
 	}
 	game->map.grid[i] = NULL;
+	game->map.height = count;
 	game->count_line = count;
 	return (0);
 }

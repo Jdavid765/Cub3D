@@ -14,6 +14,9 @@
 
 int	floodfil(t_game *game, int x, int y)
 {
+	if (y < 0 || x < 0 || !game->map.cpy_grid[y]
+		|| !game->map.cpy_grid[y][x])
+		return (game->floodfil.status = 10, 10);
 	if (game->floodfil.status == 10)
 		return (10);
 	if (game->map.cpy_grid[y][x] == '1' || game->map.cpy_grid[y][x] == 'V')

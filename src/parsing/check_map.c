@@ -23,7 +23,7 @@ int	check_player(t_game *game)
 			return (1);
 		y++;
 	}
-	if (game->player.cardinal == 0)
+	if (game->player.facing == DIR_NONE)
 		return (1);
 	if (cpy_the_map(game))
 		return (1);
