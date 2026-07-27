@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/27 13:14:30 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/07/27 13:39:55 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <unistd.h>
 # include "mlx.h"
 # include "libft.h"
-/* # include "get_next_line.h"  — TODO: enable when GNL will be added*/
+# include "get_next_line.h"
 
 /* -------------------------------------------------------------------------- */
 /*                           RENDERER — MACROS                                */
@@ -136,8 +136,8 @@ typedef struct s_game
 	char			*so;
 	char			*ea;
 	char			*we;
-	int				floor_color;
-	int				ceiling_color;
+	int				floor_colors;/*doublon pourquoi en int*/
+	int				ceiling_colors;/*doublon*/
 	t_mlx			mlx;
 	void			*frame_image;
 	unsigned int	*frame_buffer;
@@ -193,7 +193,6 @@ void	ft_exit(t_game *game);
 void	free_grid(t_game *game);
 void	free_cpygrid(t_game *game, int position);
 
-#endif
 /* -------------------------------------------------------------------------- */
 /*                           RENDERER — declarations                          */
 /* -------------------------------------------------------------------------- */

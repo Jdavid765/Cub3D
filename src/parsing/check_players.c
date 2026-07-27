@@ -38,19 +38,19 @@ int	all_else_if(t_game *game, int y)
 
 int	check_other_player(t_game *game, char letter, int x, int y)
 {
-	if (game->player.cardinal != 0)
+	if (game->player.facing != DIR_NONE)
 		return (1);
 	game->player.x = x;
 	game->player.y = y;
 	game->floodfil.letter = game->map.grid[y][x];
 	if (letter == 'N')
-		game->player.cardinal = north;
+		game->player.facing = DIR_NORTH;
 	else if (letter == 'S')
-		game->player.cardinal = south;
+		game->player.facing = DIR_SOUTH;
 	else if (letter == 'E')
-		game->player.cardinal = east;
+		game->player.facing = DIR_EAST;
 	else if (letter == 'W')
-		game->player.cardinal = west;
+		game->player.facing = DIR_WEST;
 	return (0);
 }
 /*Is looking if not other player ar registred and if
