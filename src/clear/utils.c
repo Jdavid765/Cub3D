@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_filename.c                                   :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 09:49:27 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/20 21:25:35 by canoduran        ###   ########.fr       */
+/*   Created: 2026/06/20 21:41:41 by canoduran         #+#    #+#             */
+/*   Updated: 2026/07/23 18:38:52 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	check_filename(char *line, char *verif, t_game *game)
+void	free_grid(t_game *game)
 {
-	char	*check_argument;
-	int		i;
+	int	i;
 
 	i = 0;
-	check_argument = ft_strrchr(line, '.');
-	if (!check_argument)
-		return (1);
-	while (check_argument[i] || verif[i])
+	while (i < game->count_line)
 	{
-		if (check_argument[i] != verif[i])
-			return (1);
+		if (game->map.grid)
+			free(game->map.grid[i]);
+		if (game->map.cpy_grid)
+			free(game->map.cpy_grid[i]);
 		i++;
 	}
-	game->filename = line;
-	return (0);
+	free(game->map.grid);
+	free(game->map.cpy_grid);
+}
+
+void	free_cpygrid(t_game *game, int position)
+{
+	int	i;
+
+	i = 0;
+	while (i < position)
+		free(game->map.cpy_grid[i++]);
+	free(game->map.cpy_grid);
 }

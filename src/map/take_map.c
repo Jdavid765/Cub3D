@@ -6,52 +6,111 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 12:21:40 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/13 12:21:04 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/07/23 18:37:23 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	open_file(t_game *game)
+char	**read_all_lines(int fd, int total_lines)
 {
-	int	fd;
-	int	count_lines;
+	char	**raw;
+	int		i;
 
-	count_lines = 0;
-	fd = open(game->filename, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	count_lines = count_l(fd);
-	close(fd);
-	if (count_lines <= 0)
-		return (1);
-	fd = open(game->filename, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	if (add_map_in_grid(game, count_lines, fd))
-		return (close(fd), 1);
-	close(fd);
-	return (0);
+	raw = malloc(sizeof(char *) * (total_lines + 1));
+	if (!raw)
+		return (NULL);
+	i = 0;
+	while (i < total_lines)
+	{
+		raw[i] = get_next_line(fd);
+		if (!raw[i])
+			return (free_table(raw, i), NULL);
+		i++;
+	}
+	raw[i] = NULL;
+	return (raw);
 }
+/*is for take all the file and put in the table*/
 
-int	add_map_in_grid(t_game *game, int count_lines, int fd)
+int	build_map(t_game *game, char **raw, int start, int total)
 {
-	int	position;
+	int	count;
+	int	i;
 
-	position = 0;
-	game->map.grid = malloc((count_lines + 1) * sizeof(char *));
+	count = total - start;
+	if (count <= 0)
+		return (1);
+	game->map.grid = malloc(sizeof(char *) * (count + 1));
 	if (!game->map.grid)
 		return (1);
-	while (position < count_lines)
+	i = 0;
+	while (i < count)
 	{
-		game->map.grid[position] = get_next_line(fd);
-		if (!game->map.grid[position])
-			return (1);
-		position++;
+		game->map.grid[i] = raw[start + i];
+		raw[start + i] = NULL;
+		i++;
 	}
-	game->map.grid[position] = NULL;
+	game->map.grid[i] = NULL;
+	game->count_line = count;
 	return (0);
 }
+/*now when i know where i need to start for take only the maps
+i take the pointer i don't need to duplicate and i have only the map*/
+
+int	split_config_and_map(t_game *game, char **raw, int total_lines)
+{
+	int	i;
+	int	map_start;
+
+	i = 0;
+	map_start = -1;
+	while (i < total_lines && map_start == -1)
+	{
+		if (is_empty_line(raw[i]))
+			i++;
+		else if (is_config_line(raw[i]))
+		{
+			if (pars_identifier(game, raw[i]))
+				return (1);
+			i++;
+		}
+		else
+			map_start = i;
+	}
+	if (map_start == -1 || !all_configuration_found(game))
+		return (1);
+	return (build_map(game, raw, map_start, total_lines));
+}
+/*This fonction look all files and parse all the path and when
+is finish i return the position when the map start*/
+
+int	open_file(t_game *game)
+{
+	int		fd;
+	int		total_lines;
+	char	**raw;
+	int		ret;
+
+	fd = open(game->filename, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	total_lines = count_l(fd);
+	close(fd);
+	if (total_lines <= 0)
+		return (1);
+	fd = open(game->filename, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	raw = read_all_lines(fd, total_lines);
+	close(fd);
+	if (!raw)
+		return (1);
+	ret = split_config_and_map(game, raw, total_lines);
+	return (free_table(raw, total_lines), ret);
+}
+/*That is for count the line in the folder put in table
+ split the file texture,color, and map*/
 
 int	count_l(int fd)
 {
