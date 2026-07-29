@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   check_players.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 15:46:26 by canoduran         #+#    #+#             */
-/*   Updated: 2026/06/15 16:55:38 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/07/23 18:17:49 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,24 @@ int	all_else_if(t_game *game, int y)
 	}
 	return (0);
 }
+/*Is searching all char in line for found the position about the player*/
 
 int	check_other_player(t_game *game, char letter, int x, int y)
 {
-	if (game->player.cardinal != 0)
+	if (game->player.facing != DIR_NONE)
 		return (1);
 	game->player.x = x;
 	game->player.y = y;
+	game->floodfil.letter = game->map.grid[y][x];
 	if (letter == 'N')
-		game->player.cardinal = north;
+		game->player.facing = DIR_NORTH;
 	else if (letter == 'S')
-		game->player.cardinal = south;
+		game->player.facing = DIR_SOUTH;
 	else if (letter == 'E')
-		game->player.cardinal = east;
+		game->player.facing = DIR_EAST;
 	else if (letter == 'W')
-		game->player.cardinal = west;
+		game->player.facing = DIR_WEST;
 	return (0);
 }
+/*Is looking if not other player ar registred and if
+have nobody i save the position in x,y*/
