@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/07/23 15:12:06 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/10 14:03:09 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	draw_tile(t_game *game, int grid_col, int grid_row,
 	int	offset_x;
 	int	offset_y;
 
-	pixel_x = grid_col * MINIMAP_TILE;
-	pixel_y = grid_row * MINIMAP_TILE;
+	pixel_x = grid_col * (MINIMAP_TILE / 2) - get_cam_offset((int)game->player.x, MINIMAP_W);
+	pixel_y = grid_row * (MINIMAP_TILE / 2) - get_cam_offset((int)game->player.y, MINIMAP_H);
 	offset_y = 0;
-	while (offset_y < MINIMAP_TILE)
+	while (offset_y < (MINIMAP_TILE / 2))
 	{
 		offset_x = 0;
-		while (offset_x < MINIMAP_TILE)
+		while (offset_x < (MINIMAP_TILE / 2))
 		{
 			put_pixel(game, pixel_x + offset_x, pixel_y + offset_y, color);
 			offset_x++;
@@ -53,29 +53,40 @@ void	draw_tile(t_game *game, int grid_col, int grid_row,
 	}
 }
 
+/*
+	cette fonction sert à bien positionner la minimap par rapport au joueur en calculant le décalage entre
+	la position du joueur et le centre de l'image
+*/
+int	get_cam_offset(int player_pos, int board_size)
+{
+	int	offset;
+
+	offset = (player_pos *(MINIMAP_TILE / 2) - (board_size / 2));
+	return (offset);
+}
+
+
 /* Draw the player as a small red square centred on its map position. */
 void	draw_player(t_game *game)
 {
+
 	int	center_x;
 	int	center_y;
-	int	half_size;
-	int	offset_x;
-	int	offset_y;
+	int	pos_x;
+	int	pos_y;
 
-	center_x = (int)(game->player.x * MINIMAP_TILE);
-	center_y = (int)(game->player.y * MINIMAP_TILE);
-	half_size = MINIMAP_TILE / 8;
-	offset_y = -half_size;
-	while (offset_y < half_size)
+	center_x = MINIMAP_W / 2;
+	center_y = MINIMAP_H / 2;
+	pos_y = center_y - 5;
+	while (pos_y < (center_y + 6))
 	{
-		offset_x = -half_size;
-		while (offset_x < half_size)
+		pos_x = center_x - 5;
+		while (pos_x < (center_x + 6))
 		{
-			put_pixel(game, center_x + offset_x,
-				center_y + offset_y, COLOR_PLAYER);
-			offset_x++;
+			put_pixel(game,pos_x ,pos_y ,COLOR_PLAYER);
+			pos_x++;
 		}
-		offset_y++;
+		pos_y++;
 	}
 }
 
@@ -87,8 +98,8 @@ void	draw_direction_line(t_game *game)
 	double	length;
 	int		step;
 
-	center_x = (int)(game->player.x * MINIMAP_TILE);
-	center_y = (int)(game->player.y * MINIMAP_TILE);
+	center_x = (int)(game->player.x * (MINIMAP_TILE / 2));
+	center_y = (int)(game->player.y * (MINIMAP_TILE / 2));
 	length = MINIMAP_TILE / 2;
 	step = 0;
 	while (step < (int)length)
@@ -110,12 +121,13 @@ void	draw_direction_line(t_game *game)
  * Nothing is sent to the screen here — hook_loop calls
  * mlx_put_image_to_window once per frame after all rendering is done.
  */
-void	render_minimap(t_game *game)
+void render_minimap(t_game *game)
 {
 	int				row;
 	int				col;
 	unsigned int	color;
 
+	draw_minimap_edge(game);
 	row = 0;
 	while (row < game->map.height)
 	{
@@ -126,11 +138,71 @@ void	render_minimap(t_game *game)
 				color = COLOR_WALL;
 			else
 				color = COLOR_FLOOR;
+			
+			/*ici mettre une condition pour limiter l'écriture de tuiles qui dépacent*/
+				// if (col)
 			draw_tile(game, col, row, color);
 			col++;
 		}
 		row++;
 	}
-	draw_direction_line(game);
 	draw_player(game);
+	// 	// draw_direction_line(game);
 }
+
+
+
+// void	draw_minimap_wall(t_game *game)
+// {
+	
+// }
+
+// void	draw_minimap_floor()
+// {
+	
+// }
+
+
+void	draw_minimap_edge(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y <= MINIMAP_H - 1)
+	{
+		x = 0;
+		while (x <= MINIMAP_W - 1)
+		{
+			if (y <= 3 || y >= MINIMAP_H - 4)
+			{
+				put_pixel(game,x ,y ,COLOR_TESTER);
+			}
+			else if (x <= 3 || x >= MINIMAP_W - 4)
+			{
+				put_pixel(game,x ,y ,COLOR_TESTER);
+			}
+			else
+			{
+				put_pixel(game,x ,y ,COLOR_FLOOR);
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+
+
+
+// Pseudo-code pour draw_minimap_border :
+    
+    
+//     FONCTION draw_minimap_border(game):
+    
+
+//     Si tu veux une bordure plus épaisse (2px), tu répètes avec x, 1 et x, MINIMAP_H-2 etc.
+    
+    
+    
+//     Une fois écrite, tu l'appelles en première ligne de render_minimap().

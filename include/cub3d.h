@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/27 13:39:55 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/10 13:05:25 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,26 @@
 /* -------------------------------------------------------------------------- */
 
 /* Window dimensions in pixels */
-# define WIN_WIDTH      1920
-# define WIN_HEIGHT     1080
+# define WIN_WIDTH      1920 /*longeur*/
+# define WIN_HEIGHT     1080 /*largeur*/
 
 /* Number of pixels per grid cell on the minimap */
-# define MINIMAP_TILE   200
+# define MINIMAP_TILE   128
+# define MINIMAP_EDGE   200
+# define MINIMAP_W      384 /*à essayer aussi 644*/
+# define MINIMAP_H      384
+
 
 /* 32-bit colours in ARGB format (0xAARRGGBB) */
 # define COLOR_WALL     0xFF444444 /* */
 # define COLOR_FLOOR    0xFFCCCCCC /* */
 # define COLOR_PLAYER   0xFFFF0000 /*red*/
 # define COLOR_DIR      0xFF00FF00 /* green*/
+# define COLOR_BORDER   0xFFF5D76E /*light yellow*/
+# define COLOR_TESTER   0xFF00F7
 
 /* Movement tuning — units per frame at ~50 FPS */
-# define MOVE_SPEED     0.03
+# define MOVE_SPEED     0.035
 # define ROT_SPEED      0.02
 
 /* X11 keycodes */
@@ -218,5 +224,15 @@ int		hook_loop(void *param);
 int		key_press(int keycode, void *param);
 int		key_release(int keycode, void *param);
 void	handle_movement(t_game *game, double move_x, double move_y);
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                            MINIMAP — declarations                          */
+/* -------------------------------------------------------------------------- */
+
+void	draw_minimap_edge(t_game *game);
+int	get_cam_offset(int player_pos, int board_size);
+
 
 #endif
