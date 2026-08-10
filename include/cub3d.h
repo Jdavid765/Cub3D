@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/10 15:24:52 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/10 16:18:52 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ void	handle_movement(t_game *game, double move_x, double move_y);
 /* -------------------------------------------------------------------------- */
 
 void	draw_minimap_edge(t_game *game);
-int		get_cam_offset(int player_pos, int board_size);
+int		get_cam_offset(double player_pos, int board_size);
 int		is_minimap_range(t_game *game, int col, int row);
 
 

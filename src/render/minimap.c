@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/10 15:35:05 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/10 16:18:14 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	draw_tile(t_game *game, int grid_col, int grid_row,
 	int	offset_x;
 	int	offset_y;
 
-	pixel_x = grid_col * (MINIMAP_TILE / 2) - get_cam_offset((int)game->player.x, MINIMAP_W);
-	pixel_y = grid_row * (MINIMAP_TILE / 2) - get_cam_offset((int)game->player.y, MINIMAP_H);
+	pixel_x = grid_col * (MINIMAP_TILE / 2) - get_cam_offset(game->player.x, MINIMAP_W);
+	pixel_y = grid_row * (MINIMAP_TILE / 2) - get_cam_offset(game->player.y, MINIMAP_H);
 	offset_y = 0;
 	while (offset_y < (MINIMAP_TILE / 2))
 	{
@@ -57,12 +57,12 @@ void	draw_tile(t_game *game, int grid_col, int grid_row,
 	cette fonction sert à bien positionner la minimap par rapport au joueur en calculant le décalage entre
 	la position du joueur et le centre de l'image
 */
-int	get_cam_offset(int player_pos, int board_size)
+int	get_cam_offset(double player_pos, int board_size)
 {
-	int	offset;
+	double	offset;
 
 	offset = (player_pos *(MINIMAP_TILE / 2) - (board_size / 2));
-	return (offset);
+	return ((int)offset);
 }
 
 
