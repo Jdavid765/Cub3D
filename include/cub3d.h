@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/10 13:05:25 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/10 15:24:52 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double		x; /*position du joueur sur la grille*/
+	double		x; /*position du joueur sur la grille pos_x et y serait mieux*/
 	double		y;
 	double		dir_x;/*vecteur de direction du joueur*/
 	double		dir_y;
@@ -232,7 +232,8 @@ void	handle_movement(t_game *game, double move_x, double move_y);
 /* -------------------------------------------------------------------------- */
 
 void	draw_minimap_edge(t_game *game);
-int	get_cam_offset(int player_pos, int board_size);
+int		get_cam_offset(int player_pos, int board_size);
+int		is_minimap_range(t_game *game, int col, int row);
 
 
 #endif

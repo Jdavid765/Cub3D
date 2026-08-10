@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/10 14:03:09 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/10 15:35:05 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ void render_minimap(t_game *game)
 	int				col;
 	unsigned int	color;
 
-	draw_minimap_edge(game);
 	row = 0;
 	while (row < game->map.height)
 	{
@@ -138,19 +137,25 @@ void render_minimap(t_game *game)
 				color = COLOR_WALL;
 			else
 				color = COLOR_FLOOR;
-			
-			/*ici mettre une condition pour limiter l'écriture de tuiles qui dépacent*/
-				// if (col)
-			draw_tile(game, col, row, color);
+			if (is_minimap_range(game, col, row))
+				draw_tile(game, col, row, color);
 			col++;
 		}
 		row++;
 	}
+	draw_minimap_edge(game);
 	draw_player(game);
 	// 	// draw_direction_line(game);
 }
 
-
+int	is_minimap_range(t_game *game, int col, int row)
+{
+	if (col < ((int)game->player.x - 3) || col > ((int)game->player.x + 2))
+		return (0);
+	else if (row < ((int)game->player.y - 3) || row > ((int)game->player.y + 2))
+		return (0);
+	return (1);
+}
 
 // void	draw_minimap_wall(t_game *game)
 // {
@@ -182,10 +187,10 @@ void	draw_minimap_edge(t_game *game)
 			{
 				put_pixel(game,x ,y ,COLOR_TESTER);
 			}
-			else
-			{
-				put_pixel(game,x ,y ,COLOR_FLOOR);
-			}
+			// else
+			// {
+			// 	put_pixel(game,x ,y ,COLOR_FLOOR);
+			// }
 			x++;
 		}
 		y++;
