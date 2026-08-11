@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/10 16:18:14 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/11 17:53:55 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	draw_direction_line(t_game *game)
 	double	length;
 	int		step;
 
-	center_x = (int)(game->player.x * (MINIMAP_TILE / 2));
-	center_y = (int)(game->player.y * (MINIMAP_TILE / 2));
+	center_x = (MINIMAP_W / 2);
+	center_y = (MINIMAP_H / 2);
 	length = MINIMAP_TILE / 2;
 	step = 0;
 	while (step < (int)length)
@@ -145,9 +145,13 @@ void render_minimap(t_game *game)
 	}
 	draw_minimap_edge(game);
 	draw_player(game);
-	// 	// draw_direction_line(game);
+	draw_direction_line(game);
 }
 
+/*
+	cette fonction sert à ne pas imprimer les cases qui sont
+	au-delà de 3 cases par rapport au joueur
+*/
 int	is_minimap_range(t_game *game, int col, int row)
 {
 	if (col < ((int)game->player.x - 3) || col > ((int)game->player.x + 2))
@@ -157,17 +161,9 @@ int	is_minimap_range(t_game *game, int col, int row)
 	return (1);
 }
 
-// void	draw_minimap_wall(t_game *game)
-// {
-	
-// }
-
-// void	draw_minimap_floor()
-// {
-	
-// }
-
-
+/*
+	ici on dessine le bord de la minimap pas plus complexe que ça ^^
+*/
 void	draw_minimap_edge(t_game *game)
 {
 	int	x;
@@ -187,27 +183,9 @@ void	draw_minimap_edge(t_game *game)
 			{
 				put_pixel(game,x ,y ,COLOR_TESTER);
 			}
-			// else
-			// {
-			// 	put_pixel(game,x ,y ,COLOR_FLOOR);
-			// }
 			x++;
 		}
 		y++;
 	}
 }
 
-
-
-
-// Pseudo-code pour draw_minimap_border :
-    
-    
-//     FONCTION draw_minimap_border(game):
-    
-
-//     Si tu veux une bordure plus épaisse (2px), tu répètes avec x, 1 et x, MINIMAP_H-2 etc.
-    
-    
-    
-//     Une fois écrite, tu l'appelles en première ligne de render_minimap().
