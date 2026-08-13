@@ -6,24 +6,46 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/11 17:53:55 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/13 19:01:57 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
- * Write one pixel into the off-screen frame buffer.
- * Bounds-checked — silently drops pixels outside the window.
- * The buffer is a flat array of 32-bit ARGB colours.
- * buffer_pitch = how many pixels per row (may be > WIN_WIDTH due to GPU
- * memory alignment, so we use it instead of WIN_WIDTH for indexing).
+ * Draw the complete minimap into the frame buffer.
+ * the player position (red square), and the direction the player is facing
+ * (green line).
+ * Nothing is sent to the screen here —> hook_loop calls
  */
-void	put_pixel(t_game *game, int x, int y, unsigned int color)
+void render_minimap(t_game *game)
 {
-	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
-		game->frame_buffer[y * game->buffer_pitch + x] = color;
+	int				row;
+	int				col;
+	unsigned int	color;
+
+	row = 0;
+	while (row < game->map.height)
+	{
+		col = 0;
+		while (col < game->map.width)
+		{
+			if (game->map.grid[row][col] == '1')
+				color = COLOR_WALL;
+			else
+				color = COLOR_FLOOR;
+			if (is_minimap_range(game, col, row))
+				draw_tile(game, col, row, color);
+			col++;
+		}
+		row++;
+	}
+	draw_minimap_edge(game);
+	draw_player(game);
+	draw_direction_line(game);
+	draw_plane_line(game);
 }
+
 
 /*
  * Fill one grid cell on the minimap with a solid colour.
@@ -52,19 +74,6 @@ void	draw_tile(t_game *game, int grid_col, int grid_row,
 		offset_y++;
 	}
 }
-
-/*
-	cette fonction sert à bien positionner la minimap par rapport au joueur en calculant le décalage entre
-	la position du joueur et le centre de l'image
-*/
-int	get_cam_offset(double player_pos, int board_size)
-{
-	double	offset;
-
-	offset = (player_pos *(MINIMAP_TILE / 2) - (board_size / 2));
-	return ((int)offset);
-}
-
 
 /* Draw the player as a small red square centred on its map position. */
 void	draw_player(t_game *game)
@@ -113,55 +122,6 @@ void	draw_direction_line(t_game *game)
 }
 
 /*
- * Draw the complete minimap into the frame buffer.
- * The minimap shows every cell of the map grid (walls = grey, floor =
- * light grey),
- * the player position (red square), and the direction the player is facing
- * (green line).
- * Nothing is sent to the screen here — hook_loop calls
- * mlx_put_image_to_window once per frame after all rendering is done.
- */
-void render_minimap(t_game *game)
-{
-	int				row;
-	int				col;
-	unsigned int	color;
-
-	row = 0;
-	while (row < game->map.height)
-	{
-		col = 0;
-		while (col < game->map.width)
-		{
-			if (game->map.grid[row][col] == '1')
-				color = COLOR_WALL;
-			else
-				color = COLOR_FLOOR;
-			if (is_minimap_range(game, col, row))
-				draw_tile(game, col, row, color);
-			col++;
-		}
-		row++;
-	}
-	draw_minimap_edge(game);
-	draw_player(game);
-	draw_direction_line(game);
-}
-
-/*
-	cette fonction sert à ne pas imprimer les cases qui sont
-	au-delà de 3 cases par rapport au joueur
-*/
-int	is_minimap_range(t_game *game, int col, int row)
-{
-	if (col < ((int)game->player.x - 3) || col > ((int)game->player.x + 2))
-		return (0);
-	else if (row < ((int)game->player.y - 3) || row > ((int)game->player.y + 2))
-		return (0);
-	return (1);
-}
-
-/*
 	ici on dessine le bord de la minimap pas plus complexe que ça ^^
 */
 void	draw_minimap_edge(t_game *game)
@@ -188,4 +148,37 @@ void	draw_minimap_edge(t_game *game)
 		y++;
 	}
 }
+
+void	draw_plane_line(t_game *game)
+{
+	int		center_x;
+	int		center_y;
+	double	length;
+	int		step;
+
+	center_x = (int)((MINIMAP_TILE / 2) * game->player.dir_x) + (MINIMAP_W / 2);
+	center_y = (int)((MINIMAP_TILE / 2) * game->player.dir_y) + (MINIMAP_H / 2);
+	length = MINIMAP_TILE / 2;
+	step = 0;
+	while (step < (int)length)
+	{
+		put_pixel(game,
+			center_x + (int)(game->player.plane_x * step),
+			center_y + (int)(game->player.plane_y * step),
+			COLOR_PLANE);
+		game->player.plane_x *= -1;
+		game->player.plane_y *= -1;
+		put_pixel(game,
+					center_x + (int)(game->player.plane_x * step),
+					center_y + (int)(game->player.plane_y * step),
+					COLOR_PLANE);
+		game->player.plane_x *= -1;
+		game->player.plane_y *= -1;
+		step++;
+	}
+}
+
+
+
+
 

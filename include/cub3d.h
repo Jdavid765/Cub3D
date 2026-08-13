@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/10 16:18:52 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/11 21:17:37 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@
 # define COLOR_PLAYER   0xFFFF0000 /*red*/
 # define COLOR_DIR      0xFF00FF00 /* green*/
 # define COLOR_BORDER   0xFFF5D76E /*light yellow*/
-# define COLOR_TESTER   0xFF00F7
+# define COLOR_TESTER   0xFF00F7 /*purple*/
+# define COLOR_PLANE    0xFFFFCC00 /*dark yellow*/
 
 /* Movement tuning — units per frame at ~50 FPS */
 # define MOVE_SPEED     0.035
-# define ROT_SPEED      0.02
+# define ROT_SPEED      0.025
 
 /* X11 keycodes */
 # define KEY_W          119
@@ -234,6 +235,11 @@ void	handle_movement(t_game *game, double move_x, double move_y);
 void	draw_minimap_edge(t_game *game);
 int		get_cam_offset(double player_pos, int board_size);
 int		is_minimap_range(t_game *game, int col, int row);
-
+void	draw_plane_line(t_game *game);
+void	put_pixel(t_game *game, int x, int y, unsigned int color);
+void	draw_tile(t_game *game, int grid_col, int grid_row,
+		unsigned int color);
+void	draw_player(t_game *game);
+void	draw_direction_line(t_game *game);
 
 #endif
