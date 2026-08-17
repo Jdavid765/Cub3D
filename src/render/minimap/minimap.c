@@ -6,11 +6,11 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/13 19:01:57 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/17 15:58:39 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+  #include "cub3d.h"
 
 /*
  * Draw the complete minimap into the frame buffer.
@@ -18,7 +18,7 @@
  * (green line).
  * Nothing is sent to the screen here —> hook_loop calls
  */
-void render_minimap(t_game *game)
+void	render_minimap(t_game *game)
 {
 	int				row;
 	int				col;
@@ -42,7 +42,7 @@ void render_minimap(t_game *game)
 	}
 	draw_minimap_edge(game);
 	draw_player(game);
-	draw_direction_line(game);
+	draw_all_rays(game);
 	draw_plane_line(game);
 }
 
@@ -100,7 +100,7 @@ void	draw_player(t_game *game)
 }
 
 /* Draw a short green line from the player showing the look direction. */
-void	draw_direction_line(t_game *game)
+void	draw_direction_line(t_game *game, double dir_x, double dir_y)
 {
 	int		center_x;
 	int		center_y;
@@ -114,9 +114,39 @@ void	draw_direction_line(t_game *game)
 	while (step < (int)length)
 	{
 		put_pixel(game,
-			center_x + (int)(game->player.dir_x * step),
-			center_y + (int)(game->player.dir_y * step),
+			center_x + (int)(dir_x * step),
+			center_y + (int)(dir_y * step),
 			COLOR_DIR);
+		step++;
+	}
+}
+
+
+void	draw_plane_line(t_game *game)
+{
+	int		center_x;
+	int		center_y;
+	double	length;
+	int		step;
+
+	center_x = (int)((MINIMAP_TILE / 2) * game->player.dir_x) + (MINIMAP_W / 2);
+	center_y = (int)((MINIMAP_TILE / 2) * game->player.dir_y) + (MINIMAP_H / 2);
+	length = MINIMAP_TILE / 2;
+	step = 0;
+	while (step < (int)length)
+	{
+		put_pixel(game,
+			center_x + (int)(game->player.plane_x * step),
+			center_y + (int)(game->player.plane_y * step),
+			COLOR_PLANE);
+		game->player.plane_x *= -1;
+		game->player.plane_y *= -1;
+		put_pixel(game,
+					center_x + (int)(game->player.plane_x * step),
+					center_y + (int)(game->player.plane_y * step),
+					COLOR_PLANE);
+		game->player.plane_x *= -1;
+		game->player.plane_y *= -1;
 		step++;
 	}
 }
@@ -148,37 +178,3 @@ void	draw_minimap_edge(t_game *game)
 		y++;
 	}
 }
-
-void	draw_plane_line(t_game *game)
-{
-	int		center_x;
-	int		center_y;
-	double	length;
-	int		step;
-
-	center_x = (int)((MINIMAP_TILE / 2) * game->player.dir_x) + (MINIMAP_W / 2);
-	center_y = (int)((MINIMAP_TILE / 2) * game->player.dir_y) + (MINIMAP_H / 2);
-	length = MINIMAP_TILE / 2;
-	step = 0;
-	while (step < (int)length)
-	{
-		put_pixel(game,
-			center_x + (int)(game->player.plane_x * step),
-			center_y + (int)(game->player.plane_y * step),
-			COLOR_PLANE);
-		game->player.plane_x *= -1;
-		game->player.plane_y *= -1;
-		put_pixel(game,
-					center_x + (int)(game->player.plane_x * step),
-					center_y + (int)(game->player.plane_y * step),
-					COLOR_PLANE);
-		game->player.plane_x *= -1;
-		game->player.plane_y *= -1;
-		step++;
-	}
-}
-
-
-
-
-

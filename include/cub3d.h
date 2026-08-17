@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/11 21:17:37 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/14 14:24:34 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,9 +215,6 @@ void	set_player_direction(t_game *game);
 int		init_mlx_win(t_game *game);
 int		create_frame_buffer(t_game *game);
 
-/* render/minimap.c */
-void	render_minimap(t_game *game);
-
 /* render/hooks.c */
 int		hook_loop(void *param);
 
@@ -240,6 +237,8 @@ void	put_pixel(t_game *game, int x, int y, unsigned int color);
 void	draw_tile(t_game *game, int grid_col, int grid_row,
 		unsigned int color);
 void	draw_player(t_game *game);
-void	draw_direction_line(t_game *game);
+void	draw_direction_line(t_game *game, double dir_x, double dir_y);
+void	draw_all_rays(t_game *game);
+void	render_minimap(t_game *game);
 
 #endif
