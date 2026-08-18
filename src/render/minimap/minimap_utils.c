@@ -6,10 +6,9 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 18:22:01 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/11 18:24:13 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/18 14:47:17 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -26,9 +25,9 @@ void	put_pixel(t_game *game, int x, int y, unsigned int color)
 		game->frame_buffer[y * game->buffer_pitch + x] = color;
 }
 
-
 /*
-	cette fonction sert à bien positionner la minimap par rapport au joueur en calculant le décalage entre
+	cette fonction sert à bien positionner la minimap par rapport
+	au joueur en calculant le décalage entre
 	la position du joueur et le centre de l'image
 */
 int	get_cam_offset(double player_pos, int board_size)
@@ -51,5 +50,3 @@ int	is_minimap_range(t_game *game, int col, int row)
 		return (0);
 	return (1);
 }
-
-

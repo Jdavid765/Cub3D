@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx_win.c                                        :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:27:29 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/07/16 16:46:00 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/18 14:46:08 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
  * Create the off-screen frame image and retrieve its pixel buffer.
- * One frame = one big array of pixels we draw into before blitting to the window.
+ * One frame = one big array of pixels we draw into before
+ 	blitting to the window.
  */
 int	create_frame_buffer(t_game *game)
 {

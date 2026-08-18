@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/14 14:24:34 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/18 14:42:00 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ int		check_player(t_game *game);
 
 /*parsing/parse_texture.c*/
 int		pars_identifier(t_game *game, char *line);
-int		pars_color(t_color *color, int *set_flag, char *str);
+int		pars_color(t_color *color, int *set_flag, char *str, int i);
 int		pars_texture(char **dest, char *path);
 int		pars_int(char **str, int *value);
 
