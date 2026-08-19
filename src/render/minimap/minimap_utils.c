@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 18:22:01 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/18 14:47:17 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/19 15:28:11 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	get_cam_offset(double player_pos, int board_size)
 */
 int	is_minimap_range(t_game *game, int col, int row)
 {
-	if (col < ((int)game->player.x - 3) || col > ((int)game->player.x + 2))
+	if (col < ((int)game->player.x - 4) || col > ((int)game->player.x + 3))
 		return (0);
-	else if (row < ((int)game->player.y - 3) || row > ((int)game->player.y + 2))
+	else if (row < ((int)game->player.y - 4) || row > ((int)game->player.y + 3))
 		return (0);
 	return (1);
 }
