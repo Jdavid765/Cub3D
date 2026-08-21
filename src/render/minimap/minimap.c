@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/19 15:51:01 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/19 15:54:16 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	draw_tile(t_game *game, int grid_col, int grid_row,
 		offset_x = 0;
 		while (offset_x < (MINIMAP_TILE / 2))
 		{
-			if ((pixel_x + offset_x) < MINIMAP_W && (pixel_y + offset_y) < MINIMAP_H)
+			if ((pixel_x + offset_x) < MINIMAP_W
+				&& (pixel_y + offset_y) < MINIMAP_H)
 				put_pixel(game, pixel_x + offset_x, pixel_y + offset_y, color);
 			offset_x++;
 		}
@@ -152,7 +153,7 @@ void	draw_plane_line(t_game *game)
 }
 
 /*
-	ici on dessine le bord de la minimap pas plus complexe que ça ^^
+	here the map edge is draw (the purple line)
 */
 void	draw_minimap_edge(t_game *game)
 {

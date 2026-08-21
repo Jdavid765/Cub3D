@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/18 14:42:00 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/21 15:04:58 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 
 /* Number of pixels per grid cell on the minimap */
 # define MINIMAP_TILE   128
-# define MINIMAP_EDGE   200
 # define MINIMAP_W      384 /*à essayer aussi 644*/
 # define MINIMAP_H      384
 
@@ -45,7 +44,6 @@
 # define COLOR_FLOOR    0xFFCCCCCC /* */
 # define COLOR_PLAYER   0xFFFF0000 /*red*/
 # define COLOR_DIR      0xFF00FF00 /* green*/
-# define COLOR_BORDER   0xFFF5D76E /*light yellow*/
 # define COLOR_TESTER   0xFF00F7 /*purple*/
 # define COLOR_PLANE    0xFFFFCC00 /*dark yellow*/
 
@@ -139,12 +137,6 @@ typedef struct s_game
 	t_texture		texture;
 	t_color			floor_color;
 	t_color			ceiling_color;
-	char			*no;
-	char			*so;
-	char			*ea;
-	char			*we;
-	int				floor_colors;/*doublon pourquoi en int*/
-	int				ceiling_colors;/*doublon*/
 	t_mlx			mlx;
 	void			*frame_image;
 	unsigned int	*frame_buffer;
@@ -166,18 +158,21 @@ int		check_filename(char *line, char *verif, t_game *game);
 /* take_map.c */
 int		open_file(t_game *filename);
 int		count_l(int fd);
+char	**read_all_lines(int fd, int total_lines);
+int		build_map(t_game *game, char **raw, int start, int total);
+int		split_config_and_map(t_game *game, char **raw, int total_lines);
 
 /* init.c */
 void	init(t_game *game);
 
-/* parsing/utils.c */
+/* parsing/check_players.c */
 int		all_else_if(t_game *game, int y);
 int		check_other_player(t_game *game, char letter, int x, int y);
 
-/* parsing/parsing.c */
+/* parsing/check_map.c */
 int		check_player(t_game *game);
 
-/*parsing/parse_texture.c*/
+/*parsing/parse_elements.c*/
 int		pars_identifier(t_game *game, char *line);
 int		pars_color(t_color *color, int *set_flag, char *str, int i);
 int		pars_texture(char **dest, char *path);
@@ -211,17 +206,20 @@ void	set_east(t_player *player);
 void	set_west(t_player *player);
 void	set_player_direction(t_game *game);
 
-/* render/init_mlx_win.c */
+/* render/init_game.c */
 int		init_mlx_win(t_game *game);
 int		create_frame_buffer(t_game *game);
 
 /* render/hooks.c */
 int		hook_loop(void *param);
+void	handle_rotation(t_game *game);
 
 /* render/hooks_key.c */
 int		key_press(int keycode, void *param);
 int		key_release(int keycode, void *param);
 void	handle_movement(t_game *game, double move_x, double move_y);
+int		is_wall(t_game *game, double x, double y);
+void	slide_move(t_game *game, double move_x, double move_y);
 
 
 
@@ -229,6 +227,7 @@ void	handle_movement(t_game *game, double move_x, double move_y);
 /*                            MINIMAP — declarations                          */
 /* -------------------------------------------------------------------------- */
 
+/*mettre le chemin des dossiers*/
 void	draw_minimap_edge(t_game *game);
 int		get_cam_offset(double player_pos, int board_size);
 int		is_minimap_range(t_game *game, int col, int row);

@@ -1,6 +1,6 @@
 *This project has been created as part of the 42 curriculum by jcano-du, nfiora-d.*
 
-## 📖 Description
+##  Description
 
 **cub3D** is a project inspired by the world-famous 90s game, *Wolfenstein 3D*. The main objective of this project is to create a basic 3D engine using the **Raycasting** technique. This project is a great opportunity to explore applied mathematics, window and event management via the *miniLibX*, as well as rigorous configuration file parsing.
 
@@ -38,7 +38,7 @@
 
 ---
 
-## 🚀 Usage
+##  Usage
 
 To launch the game, you must pass a valid `.cub` map file as an argument.
 
@@ -60,7 +60,7 @@ To launch the game, you must pass a valid `.cub` map file as an argument.
 
 ---
 
-## 🗺️ Map Format (`.cub`)
+##  Map Format (`.cub`)
 
 The map configuration file must follow strict parsing rules:
 
@@ -69,3 +69,22 @@ The map configuration file must follow strict parsing rules:
 * **The Map**: Composed of `0` (empty space), `1` (wall), and a starting letter (`N`, `S`, `E`, `W`) representing the player's initial position and spawning orientation. The map must be completely enclosed by walls.
 
 ---
+
+
+##  Project Status
+
+###  Done
+
+- Strict `.cub` parsing (textures, colors, map grid)
+- Map validation (floodfill, wall closure check)
+- Minimap rendering (tiles, player, direction line, camera plane)
+- Player movement & rotation (WASD + arrow keys) with wall collision
+
+###  To Do
+
+- **DDA raycasting** — walk the grid cell by cell until a wall is hit (core of the 3D render)
+- **3D projection** — draw wall columns from the perpendicular distance
+- **Wall textures** — load and apply a texture per orientation (N/S/E/W)
+- **Floor & ceiling** — fill colors (already parsed, not yet drawn)
+- **Player centering** — spawn at `x + 0.5` / `y + 0.5` for a stable DDA
+- **Naming cleanup** — unify `map_x/map_y` vs `tile_x/tile_y`
