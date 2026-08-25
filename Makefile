@@ -6,7 +6,7 @@
 #    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/08/14 14:22:27 by pucci17pink      ###   ########.fr        #
+#    Updated: 2026/08/24 15:29:16 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ DIR_RENDER  = $(DIR_SRC)/render
 DIR_PARSING = $(DIR_SRC)/parsing
 DIR_CLEAR   = $(DIR_SRC)/clear
 DIR_MINIMAP = $(DIR_RENDER)/minimap
+DIR_RENDER3D = $(DIR_RENDER)/render_3d
 OBJ_DIR     = obj
 
 # --- SOURCES ---
@@ -56,6 +57,7 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_MINIMAP)/minimap.c \
 	$(DIR_MINIMAP)/minimap_utils.c \
 	$(DIR_MINIMAP)/dda_logic.c \
+	$(DIR_RENDER3D)/dda_loop.c \
 	
 #      $(DIR_MAP)/check_filename.c \
 #      $(DIR_MAP)/take_map.c \

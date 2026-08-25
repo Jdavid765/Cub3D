@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:30:00 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/10 16:26:18 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/24 15:24:59 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	hook_loop(void *param)
 	memset(game->frame_buffer, 0,
 		game->buffer_pitch * WIN_HEIGHT * sizeof(unsigned int));
 	render_minimap(game);
+	/*render_dda();*/
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->frame_image, 0, 0);
 	usleep(16000);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/21 15:04:58 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/25 17:05:51 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,23 @@ typedef struct s_player
 	double		plane_y;
 	t_direction	facing;/*orientation du joueur*/
 }	t_player;
+
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	perp_dist;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
+	int		side;
+	int		hit;
+}	t_ray;
 
 typedef struct s_floodfil
 {
