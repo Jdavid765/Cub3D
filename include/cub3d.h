@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/25 17:05:51 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/26 19:34:18 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,10 @@ void	handle_movement(t_game *game, double move_x, double move_y);
 int		is_wall(t_game *game, double x, double y);
 void	slide_move(t_game *game, double move_x, double move_y);
 
+/*render/render_3D/draw_wall.c*/
+void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
+void	fill_wall(t_game *game, t_ray *ray, int x, int draw_start, int draw_end);
+void	draw_wall(t_game *game, t_ray *ray, int x);
 
 
 /* -------------------------------------------------------------------------- */
