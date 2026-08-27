@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/26 19:34:18 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/27 17:13:34 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,8 @@ void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
 void	fill_wall(t_game *game, t_ray *ray, int x, int draw_start, int draw_end);
 void	draw_wall(t_game *game, t_ray *ray, int x);
 
+/*render/render_3D/dda_loop.c*/
+void	render_dda(t_game *game);
 
 /* -------------------------------------------------------------------------- */
 /*                            MINIMAP — declarations                          */
