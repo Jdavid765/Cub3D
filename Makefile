@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/08/26 22:10:37 by canoduran        ###   ########.fr        #
+#    Updated: 2026/08/27 17:18:43 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_RENDER)/hooks_key.c \
 	$(DIR_MINIMAP)/minimap.c \
 	$(DIR_MINIMAP)/minimap_utils.c \
-	$(DIR_RENDER3D)/dda_loop.c \
+	$(DIR_RENDER3D)/fake_dda_loop.c \
 	$(DIR_RENDER3D)/draw_wall.c 
 	
 #      $(DIR_MAP)/check_filename.c \

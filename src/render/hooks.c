@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:30:00 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/27 17:12:23 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/27 17:16:19 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	hook_loop(void *param)
 	handle_movement(game, 0, 0);
 	memset(game->frame_buffer, 0,
 		game->buffer_pitch * WIN_HEIGHT * sizeof(unsigned int));
-	render_minimap(game);
 	render_dda(game);
+	render_minimap(game);
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->frame_image, 0, 0);
 	usleep(16000);
 	return (0);
