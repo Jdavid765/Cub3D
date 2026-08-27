@@ -1,0 +1,14 @@
+# Object files
+*.o
+obj/
+
+# Compiled libraries
+*.a
+
+# Executable
+/cub3d
+
+# Editor and OS junk
+*.swp
+*~
+.DS_Store

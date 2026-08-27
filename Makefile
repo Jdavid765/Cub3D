@@ -58,6 +58,7 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_MINIMAP)/minimap_utils.c \
 	$(DIR_MINIMAP)/dda_logic.c \
 	$(DIR_RENDER3D)/dda_loop.c \
+	$(DIR_RENDER3D)/dda_walk.c \
 	
 #      $(DIR_MAP)/check_filename.c \
 #      $(DIR_MAP)/take_map.c \

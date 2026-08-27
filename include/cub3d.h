@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/25 17:05:51 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/27 15:54:13 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,8 +253,20 @@ void	put_pixel(t_game *game, int x, int y, unsigned int color);
 void	draw_tile(t_game *game, int grid_col, int grid_row,
 		unsigned int color);
 void	draw_player(t_game *game);
-void	draw_direction_line(t_game *game, double dir_x, double dir_y);
 void	draw_all_rays(t_game *game);
 void	render_minimap(t_game *game);
+
+/*render/minimap/dda_logic.c*/
+double	get_delta_dist(double ray_dir);
+void	set_minimap_ray(t_game *game, t_ray *ray,
+		double dir_x, double dir_y);
+void	draw_ray_line(t_game *game, t_ray *ray);
+void	single_ray_loop(t_game *game, double dir_x, double dir_y);
+
+/*render/render_3d/dda_walk.c*/
+void	set_step_x(t_game *game, t_ray *ray);
+void	set_step_y(t_game *game, t_ray *ray);
+void	set_perp_dist(t_ray *ray);
+void	dda_walk(t_game *game, t_ray *ray);
 
 #endif
