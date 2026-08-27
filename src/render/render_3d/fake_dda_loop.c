@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_loop.c                                         :+:      :+:    :+:   */
+/*   fake_dda_loop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 15:26:01 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/27 17:13:14 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/27 17:20:53 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	render_dda(t_game *game)
 	while (x < WIN_WIDTH)
 	{
 		ft_bzero(&ray, sizeof(t_ray));
-		fake_dist = 1.0 + fabs((double)(x - WIN_WIDTH / 2))
+		fake_dist = 3.0 + fabs((double)(x - WIN_WIDTH / 2))
 			/ (WIN_WIDTH / 2.0) * 6.0;
 		if (x % 40 < 20)
 			ray.side = 0;
