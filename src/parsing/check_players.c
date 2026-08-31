@@ -40,8 +40,8 @@ int	check_other_player(t_game *game, char letter, int x, int y)
 {
 	if (game->player.facing != DIR_NONE)
 		return (1);
-	game->player.x = x;
-	game->player.y = y;
+	game->player.x = x + 0.5;
+	game->player.y = y + 0.5;
 	game->floodfil.letter = game->map.grid[y][x];
 	if (letter == 'N')
 		game->player.facing = DIR_NORTH;

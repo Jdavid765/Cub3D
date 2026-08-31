@@ -101,28 +101,6 @@ void	draw_player(t_game *game)
 	}
 }
 
-/* Draw a short green line from the player showing the look direction. */
-void	draw_direction_line(t_game *game, double dir_x, double dir_y)
-{
-	int		center_x;
-	int		center_y;
-	double	length;
-	int		step;
-
-	center_x = (MINIMAP_W / 2);
-	center_y = (MINIMAP_H / 2);
-	length = MINIMAP_TILE / 2;
-	step = 0;
-	while (step < (int)length)
-	{
-		put_pixel(game,
-			center_x + (int)(dir_x * step),
-			center_y + (int)(dir_y * step),
-			COLOR_DIR);
-		step++;
-	}
-}
-
 void	draw_plane_line(t_game *game)
 {
 	int		center_x;

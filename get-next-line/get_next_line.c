@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 17:06:11 by david             #+#    #+#             */
-/*   Updated: 2025/11/05 02:13:31 by david            ###   ########.fr       */
+/*   Updated: 2026/06/11 15:29:10 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*ft_read(int fd, char *buffer, char *line)
 {
-	int		nb_bytes;
-	char	*tmp;
+	int			nb_bytes;
+	char		*tmp;
 
 	nb_bytes = 1;
 	if (fd < 0 || !buffer || !line)
 		return (NULL);
-	while (nb_bytes > 0 && gnl_strchr(line) == 0)
+	while (nb_bytes > 0 && ft_strchro(line) == 0)
 	{
 		nb_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (nb_bytes == -1)
 			return (free(line), NULL);
 		buffer[nb_bytes] = '\0';
-		tmp = ft_strjoin(line, buffer);
+		tmp = ft_strjoino(line, buffer);
 		if (!tmp)
 			return (free(line), NULL);
 		free(line);
@@ -41,7 +41,7 @@ char	*ft_extract(char *line, int *position)
 
 	if (line && line[*position] != '\0')
 	{
-		stake = gnl_strdup(line, *position);
+		stake = ft_strdupo(line, *position);
 		free(line);
 		*position = 0;
 		return (stake);
@@ -73,7 +73,7 @@ char	*ft_next_get_line(int fd, char **line, char *buffer)
 		return (free(*line), NULL);
 	if ((*line)[0] == '\0')
 		return (free(*line), *line = NULL, NULL);
-	cpy = gnl_strcpy(*line, &position);
+	cpy = ft_strcpyo(*line, &position);
 	if (!cpy)
 		return (free(*line), *line = NULL, NULL);
 	*line = ft_extract(*line, &position);
@@ -97,3 +97,21 @@ char	*get_next_line(int fd)
 		return (free(line), line = NULL, NULL);
 	return (cpy);
 }
+
+// int	main(void)
+// {
+// 	int	fd;
+// 	fd = open("test.txt", O_RDONLY);
+// 	if (fd == -1)
+// 		return (-1);
+// 	int count = 0;
+// 	while (count < 10)
+// 	{
+// 		char *result = get_next_line(fd);
+// 		printf("%s", result);
+// 		free (result);
+// 		count++;
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
