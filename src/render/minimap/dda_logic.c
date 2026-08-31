@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:13:06 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/31 13:40:52 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/31 15:58:24 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,12 @@ void	draw_ray_line(t_game *game, t_ray *ray)
 	step = 0;
 	while (step < length)
 	{
-		put_pixel(game, center_x + (int)(ray->dir_x * step),
+		if (center_x + (ray->dir_x * step) < MINIMAP_W
+			&& center_y + (ray->dir_y * step) < MINIMAP_H)
+		{
+			put_pixel(game, center_x + (int)(ray->dir_x * step),
 			center_y + (int)(ray->dir_y * step), COLOR_DIR);
+		}
 		step++;
 	}
 }

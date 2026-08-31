@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/31 13:28:02 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/31 15:59:09 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	render_minimap(t_game *game)
 		}
 		row++;
 	}
-	draw_minimap_edge(game);
 	draw_player(game);
 	draw_all_rays(game);
+	draw_minimap_edge(game);
 	//draw_plane_line(game);
 }
 
