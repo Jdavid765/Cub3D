@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:16:12 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/31 13:22:25 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/31 14:06:32 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,13 @@ void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end)
 {
 	int	line_height;
 
-	/* Fisheye correction by calculating the perpendicular distance */
-	if (ray->side == 0)
-		ray->perp_dist = (ray->side_dist_x - ray->delta_dist_x);
-	else
-		ray->perp_dist = (ray->side_dist_y - ray->delta_dist_y);
-	if (ray->perp_dist <= 0.0001)
-		ray->perp_dist = 0.0001;
-	/* Calculation of wall height and boundaries */
 	line_height = (int)(WIN_HEIGHT / ray->perp_dist);
 	*draw_start = -line_height / 2 + WIN_HEIGHT / 2;
 	if (*draw_start < 0)
-		*draw_start = 0;
+			*draw_start = 0;
 	*draw_end = line_height / 2 + WIN_HEIGHT / 2;
 	if (*draw_end >= WIN_HEIGHT)
-		*draw_end = WIN_HEIGHT - 1;
+			*draw_end = WIN_HEIGHT - 1;
 }
 
 void	fill_wall(t_game *game, t_ray *ray, int x,
