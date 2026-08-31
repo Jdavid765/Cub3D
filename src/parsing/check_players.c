@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_players.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 15:46:26 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/23 18:17:49 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/13 16:06:35 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	check_other_player(t_game *game, char letter, int x, int y)
 {
 	if (game->player.facing != DIR_NONE)
 		return (1);
-	game->player.x = x;
-	game->player.y = y;
+	game->player.x = x + 0.5;
+	game->player.y = y + 0.5;
 	game->floodfil.letter = game->map.grid[y][x];
 	if (letter == 'N')
 		game->player.facing = DIR_NORTH;
@@ -51,6 +51,7 @@ int	check_other_player(t_game *game, char letter, int x, int y)
 		game->player.facing = DIR_EAST;
 	else if (letter == 'W')
 		game->player.facing = DIR_WEST;
+	set_player_direction(game);
 	return (0);
 }
 /*Is looking if not other player ar registred and if

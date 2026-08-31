@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/07/27 14:13:20 by canoduran        ###   ########.fr        #
+#    Updated: 2026/08/24 15:29:16 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,11 @@ MLX       = $(MLX_DIR)/libmlx.a
 # --- DIRECTORIES ---
 DIR_SRC     = src
 DIR_MAP     = $(DIR_SRC)/map
+DIR_RENDER  = $(DIR_SRC)/render
 DIR_PARSING = $(DIR_SRC)/parsing
 DIR_CLEAR   = $(DIR_SRC)/clear
+DIR_MINIMAP = $(DIR_RENDER)/minimap
+DIR_RENDER3D = $(DIR_RENDER)/render_3d
 OBJ_DIR     = obj
 
 # --- SOURCES ---
@@ -47,11 +50,16 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_PARSING)/parse_utils.c\
 	$(DIR_CLEAR)/clear_core.c \
 	$(DIR_CLEAR)/utils.c \
-	$(DIR_SRC)/render/player.c \
-	$(DIR_SRC)/render/init_game.c \
-	$(DIR_SRC)/render/minimap.c \
-	$(DIR_SRC)/render/hooks.c \
-	$(DIR_SRC)/render/hooks_key.c \
+	$(DIR_RENDER)/player.c \
+	$(DIR_RENDER)/init_game.c \
+	$(DIR_RENDER)/hooks.c \
+	$(DIR_RENDER)/hooks_key.c \
+	$(DIR_MINIMAP)/minimap.c \
+	$(DIR_MINIMAP)/minimap_utils.c \
+	$(DIR_MINIMAP)/dda_logic.c \
+	$(DIR_RENDER3D)/dda_loop.c \
+	$(DIR_RENDER3D)/dda_walk.c \
+	
 #      $(DIR_MAP)/check_filename.c \
 #      $(DIR_MAP)/take_map.c \
 #      $(DIR_SRC)/init.c \

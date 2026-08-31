@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 17:09:11 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/23 18:29:19 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/18 14:41:30 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,12 @@ int	pars_texture(char **dest, char *path)
 }
 /*her i stock the path about the line and i return with '\n'*/
 
-int	pars_color(t_color *color, int *set_flag, char *str)
+int	pars_color(t_color *color, int *set_flag, char *str, int i)
 {
 	int	values[3];
-	int	i;
 
 	if (*set_flag)
 		return (1);
-	i = 0;
 	while (i < 3)
 	{
 		while (*str == ' ')
@@ -95,8 +93,8 @@ int	pars_identifier(t_game *game, char *line)
 	if (!ft_strncmp(line, "EA ", 3))
 		return (pars_texture(&game->texture.ea, line + 3));
 	if (!ft_strncmp(line, "F ", 2))
-		return (pars_color(&game->floor_color, &game->floor_set, line + 2));
-	return (pars_color(&game->ceiling_color, &game->ceiling_set, line + 2));
+		return (pars_color(&game->floor_color, &game->floor_set, line + 2, 0));
+	return (pars_color(&game->ceiling_color, &game->ceiling_set, line + 2, 0));
 }
 /*i call the function for look the id is NO, SO, etc..
 line+3 is for texture and line+2 is forthe color*/
