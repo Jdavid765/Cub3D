@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:16:12 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/26 19:31:41 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/31 13:22:25 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	fill_wall(t_game *game, t_ray *ray, int x,
 	}
 }
 
-/* Function to be called once the ray has hit a wall (hit == 1) */
+/*
+ Function to be called once the ray has hit a wall (hit == 1) 
+*/
 void	draw_wall(t_game *game, t_ray *ray, int x)
 {
 	int	draw_start;

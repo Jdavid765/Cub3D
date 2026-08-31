@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
+#    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/08/27 17:18:43 by canoduran        ###   ########.fr        #
+#    Updated: 2026/08/31 13:14:47 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,10 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_MINIMAP)/minimap.c \
 	$(DIR_MINIMAP)/minimap_utils.c \
 	$(DIR_RENDER3D)/fake_dda_loop.c \
-	$(DIR_RENDER3D)/draw_wall.c 
+	$(DIR_RENDER3D)/draw_wall.c\
 	$(DIR_MINIMAP)/dda_logic.c \
-	$(DIR_RENDER3D)/dda_loop.c \
-	$(DIR_RENDER3D)/dda_walk.c \
-	
+	$(DIR_RENDER3D)/dda_walk.c 
+
 #      $(DIR_MAP)/check_filename.c \
 #      $(DIR_MAP)/take_map.c \
 #      $(DIR_SRC)/init.c \

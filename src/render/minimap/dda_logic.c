@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/14 13:13:06 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/27 14:20:00 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/31 13:40:52 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,20 @@ void	draw_ray_line(t_game *game, t_ray *ray)
  * On exit the ray holds the wall cell, the touched side, both
  * side_dist values and perp_dist, all the 3D render needs.
  */
+void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y)
+{
+	ft_bzero(ray, sizeof(t_ray));
+	set_minimap_ray(game, ray, dir_x, dir_y);
+	set_step_x(game, ray);
+	set_step_y(game, ray);
+	dda_walk(game, ray);
+}
+
 void	single_ray_loop(t_game *game, double dir_x, double dir_y)
 {
 	t_ray	single_ray;
 
-	ft_bzero(&single_ray, sizeof(t_ray));
-	set_minimap_ray(game, &single_ray, dir_x, dir_y);
-	set_step_x(game, &single_ray);
-	set_step_y(game, &single_ray);
-	dda_walk(game, &single_ray);
+	cast_ray(game, &single_ray, dir_x, dir_y);
 	draw_ray_line(game, &single_ray);
 }
 
@@ -88,7 +93,7 @@ void	single_ray_loop(t_game *game, double dir_x, double dir_y)
  * Send one ray for each slice of the view.
  * cam_x goes from -1 (far left) to +1 (far right) and mixes the look
  * vector with the camera plane, so the rays spread out like a fan.
- */
+*/
 void	draw_all_rays(t_game *game)
 {
 	double	cam_x;

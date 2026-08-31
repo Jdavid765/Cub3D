@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/27 17:13:34 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/31 13:42:42 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,6 +268,7 @@ void	set_minimap_ray(t_game *game, t_ray *ray,
 		double dir_x, double dir_y);
 void	draw_ray_line(t_game *game, t_ray *ray);
 void	single_ray_loop(t_game *game, double dir_x, double dir_y);
+void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
 
 /*render/render_3d/dda_walk.c*/
 void	set_step_x(t_game *game, t_ray *ray);
