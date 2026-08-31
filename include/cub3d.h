@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/31 13:42:42 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/08/31 19:36:29 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@
 
 /* X11 keycodes */
 # define KEY_W          119
-# define KEY_A          97
+# define KEY_A          100
 # define KEY_S          115
-# define KEY_D          100
+# define KEY_D          97
 # define KEY_ESC        65307
-# define KEY_LEFT       65361
-# define KEY_RIGHT      65363
+# define KEY_LEFT       65363
+# define KEY_RIGHT      65361
 
 typedef struct s_mlx
 {
