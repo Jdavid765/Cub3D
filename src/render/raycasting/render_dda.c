@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fake_dda_loop.c                                    :+:      :+:    :+:   */
+/*   render_dda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 15:26:01 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/31 13:48:45 by pucci17pink      ###   ########.fr       */
+/*   Created: 2026/09/07 12:30:00 by pucci17pink        #+#    #+#             */
+/*   Updated: 2026/09/07 12:30:00 by pucci17pink       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void	render_dda(t_game *game)
 {
 	t_ray	ray;
-	int	x;
+	int		x;
 	double	cam_x;
 	double	dir_x;
 	double	dir_y;

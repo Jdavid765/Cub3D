@@ -6,7 +6,7 @@
 #    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/08/31 13:14:47 by pucci17pink      ###   ########.fr        #
+#    Updated: 2026/09/07 12:30:00 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,45 +29,40 @@ MLX_DIR   = mlx
 MLX       = $(MLX_DIR)/libmlx.a
 
 # --- DIRECTORIES ---
-DIR_SRC     = src
-DIR_MAP     = $(DIR_SRC)/map
-DIR_RENDER  = $(DIR_SRC)/render
-DIR_PARSING = $(DIR_SRC)/parsing
-DIR_CLEAR   = $(DIR_SRC)/clear
-DIR_MINIMAP = $(DIR_RENDER)/minimap
-DIR_RENDER3D = $(DIR_RENDER)/render_3d
-OBJ_DIR     = obj
+DIR_SRC        = src
+DIR_RENDER     = $(DIR_SRC)/render
+DIR_PARSING    = $(DIR_SRC)/parsing
+DIR_CLEANUP    = $(DIR_SRC)/cleanup
+DIR_MINIMAP    = $(DIR_RENDER)/minimap
+DIR_RAYCASTING = $(DIR_RENDER)/raycasting
+OBJ_DIR        = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
-	$(DIR_MAP)/check_filename.c \
-	$(DIR_MAP)/take_map.c \
 	$(DIR_SRC)/init.c \
+	$(DIR_PARSING)/check_filename.c \
+	$(DIR_PARSING)/read_file.c \
+	$(DIR_PARSING)/build_map.c \
 	$(DIR_PARSING)/check_map.c \
 	$(DIR_PARSING)/check_players.c \
 	$(DIR_PARSING)/floodfil.c \
-	$(DIR_PARSING)/parse_elements.c\
-	$(DIR_PARSING)/parse_utils.c\
-	$(DIR_CLEAR)/clear_core.c \
-	$(DIR_CLEAR)/utils.c \
+	$(DIR_PARSING)/parse_elements.c \
+	$(DIR_PARSING)/parse_utils.c \
+	$(DIR_CLEANUP)/free.c \
+	$(DIR_CLEANUP)/exit.c \
 	$(DIR_RENDER)/player.c \
-	$(DIR_RENDER)/init_game.c \
+	$(DIR_RENDER)/init_mlx.c \
 	$(DIR_RENDER)/hooks.c \
 	$(DIR_RENDER)/hooks_key.c \
+	$(DIR_RENDER)/pixel.c \
+	$(DIR_RAYCASTING)/ray_setup.c \
+	$(DIR_RAYCASTING)/ray_walk.c \
+	$(DIR_RAYCASTING)/cast_ray.c \
+	$(DIR_RAYCASTING)/render_dda.c \
+	$(DIR_RAYCASTING)/draw_wall.c \
 	$(DIR_MINIMAP)/minimap.c \
-	$(DIR_MINIMAP)/minimap_utils.c \
-	$(DIR_RENDER3D)/fake_dda_loop.c \
-	$(DIR_RENDER3D)/draw_wall.c\
-	$(DIR_MINIMAP)/dda_logic.c \
-	$(DIR_RENDER3D)/dda_walk.c 
-
-#      $(DIR_MAP)/check_filename.c \
-#      $(DIR_MAP)/take_map.c \
-#      $(DIR_SRC)/init.c \
-#      $(DIR_PARSING)/parsing.c \
-#      $(DIR_PARSING)/utils.c \
-#      $(GNL_DIR)/get_next_line.c \
-#      $(GNL_DIR)/get_next_line_utils.c
+	$(DIR_MINIMAP)/minimap_rays.c \
+	$(DIR_MINIMAP)/minimap_utils.c
 
 # --- GNL SOURCES ---
 GNL_SRC = $(GNL_DIR)/get_next_line.c \

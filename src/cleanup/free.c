@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/20 21:41:41 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/23 18:38:52 by canoduran        ###   ########.fr       */
+/*   Created: 2026/09/07 12:30:00 by pucci17pink        #+#    #+#             */
+/*   Updated: 2026/09/07 12:30:00 by pucci17pink       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 void	free_grid(t_game *game)
 {

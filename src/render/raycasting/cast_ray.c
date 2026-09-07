@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_utils.c                                    :+:      :+:    :+:   */
+/*   cast_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,27 +13,15 @@
 #include "cub3d.h"
 
 /*
-	cette fonction sert à bien positionner la minimap par rapport
-	au joueur en calculant le décalage entre
-	la position du joueur et le centre de l'image
-*/
-int	get_cam_offset(double player_pos, int board_size)
+ * Full DDA for one ray: setup, first step, walk, then draw it.
+ * On exit the ray holds the wall cell, the touched side, both
+ * side_dist values and perp_dist, all the 3D render needs.
+ */
+void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y)
 {
-	double	offset;
-
-	offset = (player_pos *(MINIMAP_TILE / 2) - (board_size / 2));
-	return ((int)offset);
-}
-
-/*
-	cette fonction sert à ne pas imprimer les cases qui sont
-	au-delà de 3 cases par rapport au joueur
-*/
-int	is_minimap_range(t_game *game, int col, int row)
-{
-	if (col < ((int)game->player.x - 4) || col > ((int)game->player.x + 3))
-		return (0);
-	else if (row < ((int)game->player.y - 4) || row > ((int)game->player.y + 3))
-		return (0);
-	return (1);
+	ft_bzero(ray, sizeof(t_ray));
+	set_minimap_ray(game, ray, dir_x, dir_y);
+	set_step_x(game, ray);
+	set_step_y(game, ray);
+	dda_walk(game, ray);
 }

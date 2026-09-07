@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:30:00 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/27 17:16:19 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/31 16:21:10 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ void	handle_rotation(t_game *game)
 	angle = ROT_SPEED;
 	if (game->keys.rotate_right)
 		angle = -angle;
-	/*on applique la rotation au point dir*/
 	prev_dir_x = game->player.dir_x;
 	game->player.dir_x = game->player.dir_x * cos(angle)
 		- game->player.dir_y * sin(angle);
 	game->player.dir_y = prev_dir_x * sin(angle)
 		+ game->player.dir_y * cos(angle);
-	/*et l'applique aussi a plane*/
 	prev_plane_x = game->player.plane_x;
 	game->player.plane_x = game->player.plane_x * cos(angle)
 		- game->player.plane_y * sin(angle);
@@ -64,7 +62,8 @@ int	hook_loop(void *param)
 		game->buffer_pitch * WIN_HEIGHT * sizeof(unsigned int));
 	render_dda(game);
 	render_minimap(game);
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->frame_image, 0, 0);
+	mlx_put_image_to_window(game->mlx.mlx_ptr,
+		game->mlx.win_ptr, game->frame_image, 0, 0);
 	usleep(16000);
 	return (0);
 }
