@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 15:19:53 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/07 15:51:11 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/07 16:30:37 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	load_texture(t_game *game, t_tex *tex, char *path)
 	tex->img = mlx_xpm_file_to_image(game->mlx.mlx_ptr, path,
 			&tex->width, &tex->height);
 	if (!tex->img)
-		return (printf("Error: texture not loaded \n"), 1);
+		return (printf("Error: texture not loaded %s\n"), path, 1);
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
 			&tex->line_len, &tex->endian);
 	if (!tex->addr)
-		return (printf("Error: texture addr\n"), 1);
+		return (printf("Error: texture addr %s\n"), path, 1);
 	return (0);
 }
 	

@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/09/07 16:00:06 by canoduran        ###   ########.fr        #
+#    Updated: 2026/09/07 16:03:30 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,13 +62,6 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_MINIMAP)/dda_logic.c \
 	$(DIR_RENDER3D)/dda_walk.c 
 
-#      $(DIR_MAP)/check_filename.c \
-#      $(DIR_MAP)/take_map.c \
-#      $(DIR_SRC)/init.c \
-#      $(DIR_PARSING)/parsing.c \
-#      $(DIR_PARSING)/utils.c \
-#      $(GNL_DIR)/get_next_line.c \
-#      $(GNL_DIR)/get_next_line_utils.c
 
 # --- GNL SOURCES ---
 GNL_SRC = $(GNL_DIR)/get_next_line.c \

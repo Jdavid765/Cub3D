@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/07 15:48:44 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/07 16:30:04 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,10 +179,6 @@ typedef struct s_game
 	void			*frame_image;
 	unsigned int	*frame_buffer;
 	int				buffer_pitch; /*buffer de l'image a taille réele avec les pixels poubelle*/
-	void			*t_no;
-	void			*t_so;
-	void			*t_ea;
-	void			*t_we;
 	t_keys			keys;
 }	t_game;
 
