@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/31 19:36:29 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/07 15:48:44 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,26 @@ typedef struct s_texture
 	char	*ea;
 }	t_texture;
 
+typedef enum e_tex_id
+{
+	TEX_NO,
+	TEX_SO,
+	TEX_EA,
+	TEX_WE,
+	TEX_COUNT
+}	t_tex_id;
+
+typedef struct s_tex
+{
+	void	*img; /*create image in memories*/
+	char	*addr; /*address the first pixel when the picture start in the RAM*/
+	int		bpp; /*How many byts to stock 1 color*/
+	int		line_len; /*the length about one line in the picture*/
+	int		endian; /*the order to color*/
+	int		width;
+	int		height;
+}	t_tex;
+
 typedef struct s_color
 {
 	int	r;
@@ -151,6 +171,7 @@ typedef struct s_game
 	t_map			map;
 	t_player		player;
 	t_floodfil		floodfil;
+	t_tex			tex[TEX_COUNT];
 	t_texture		texture;
 	t_color			floor_color;
 	t_color			ceiling_color;
@@ -245,6 +266,10 @@ void	draw_wall(t_game *game, t_ray *ray, int x);
 
 /*render/render_3D/dda_loop.c*/
 void	render_dda(t_game *game);
+
+/*render/render_3D/textures.c*/
+int		load_texture(t_game *game, t_tex *tex, char *path);
+int		load_textures(t_game *game);
 
 /* -------------------------------------------------------------------------- */
 /*                            MINIMAP — declarations                          */
