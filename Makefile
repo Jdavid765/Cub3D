@@ -6,10 +6,9 @@
 #    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/09/07 12:30:00 by pucci17pink      ###   ########.fr        #
+#    Updated: 2026/09/08 14:54:47 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 # --- COLORS ---
 RED      = \033[0;31m
@@ -21,7 +20,7 @@ RESET    = \033[0m
 OS        = $(shell uname)
 CC        = cc
 NAME      = cub3d
-CFLAGS    = -Wall -Wextra -Werror -I include -I mlx -I libft -I get_next_line
+CFLAGS    = -Wall -Wextra -Werror -I include -I mlx -I libft -I get_next_line -g
 LIBFT_DIR = libft
 LIBFT     = $(LIBFT_DIR)/libft.a
 GNL_DIR   = get_next_line

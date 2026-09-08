@@ -6,7 +6,7 @@
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 15:00:00 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/07/23 14:49:15 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/09/08 14:54:15 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	key_press(int keycode, void *param)
 	game = (t_game *)param;
 	if (keycode == KEY_ESC)
 	{
-		mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_ptr);
-		exit(0);/*à améliorer*/
+		exit_all(game);
+		exit(0);
 	}
 	if (keycode == KEY_W)
 		game->keys.forward = true;

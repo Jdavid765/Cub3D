@@ -213,9 +213,11 @@ void	init(t_game *game);
 /* free.c */
 void	free_grid(t_game *game);
 void	free_cpygrid(t_game *game, int position);
+void	free_textures(t_game *game);
+void	free_mlx(t_game *game);
 
 /* exit.c */
-void	ft_exit(t_game *game);
+void	exit_all(t_game *game);
 
 /* -------------------------------------------------------------------------- */
 /*                           RENDER — declarations                            */
