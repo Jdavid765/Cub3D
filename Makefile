@@ -6,7 +6,7 @@
 #    By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/09/08 14:54:47 by pucci17pink      ###   ########.fr        #
+#    Updated: 2026/09/08 17:08:00 by pucci17pink      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ $(LIBFT):
 	@make -s -C $(LIBFT_DIR) --no-print-directory
 
 $(MLX):
-	@make -s -C $(MLX_DIR) CFLAGS="-std=gnu89 -O2" libmlx.a --no-print-directory; true
+	@make -s -C $(MLX_DIR) --no-print-directory
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ) $(GNL_OBJ)
 	@echo
