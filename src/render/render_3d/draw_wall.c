@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:16:12 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/13 21:15:14 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/13 22:03:20 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	draw_wall(t_game *game, t_ray *ray, int x)
 	y = 0;
 	while (y < draw_start)
 	{
-		put_pixel(game, x, y, 0xFF87CEEB);
+		put_pixel(game, x, y, COLOR_TESTER);
 		y++;
 	}
 	draw_wall_strip(game, ray, x, draw_start, draw_end);
