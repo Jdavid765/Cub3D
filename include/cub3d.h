@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/08/27 17:13:34 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/07 16:30:04 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@
 
 /* X11 keycodes */
 # define KEY_W          119
-# define KEY_A          97
+# define KEY_A          100
 # define KEY_S          115
-# define KEY_D          100
+# define KEY_D          97
 # define KEY_ESC        65307
-# define KEY_LEFT       65361
-# define KEY_RIGHT      65363
+# define KEY_LEFT       65363
+# define KEY_RIGHT      65361
 
 typedef struct s_mlx
 {
@@ -92,6 +92,26 @@ typedef struct s_texture
 	char	*we;
 	char	*ea;
 }	t_texture;
+
+typedef enum e_tex_id
+{
+	TEX_NO,
+	TEX_SO,
+	TEX_EA,
+	TEX_WE,
+	TEX_COUNT
+}	t_tex_id;
+
+typedef struct s_tex
+{
+	void	*img; /*create image in memories*/
+	char	*addr; /*address the first pixel when the picture start in the RAM*/
+	int		bpp; /*How many byts to stock 1 color*/
+	int		line_len; /*the length about one line in the picture*/
+	int		endian; /*the order to color*/
+	int		width;
+	int		height;
+}	t_tex;
 
 typedef struct s_color
 {
@@ -151,6 +171,7 @@ typedef struct s_game
 	t_map			map;
 	t_player		player;
 	t_floodfil		floodfil;
+	t_tex			tex[TEX_COUNT];
 	t_texture		texture;
 	t_color			floor_color;
 	t_color			ceiling_color;
@@ -158,10 +179,6 @@ typedef struct s_game
 	void			*frame_image;
 	unsigned int	*frame_buffer;
 	int				buffer_pitch; /*buffer de l'image a taille réele avec les pixels poubelle*/
-	void			*t_no;
-	void			*t_so;
-	void			*t_ea;
-	void			*t_we;
 	t_keys			keys;
 }	t_game;
 
@@ -246,6 +263,10 @@ void	draw_wall(t_game *game, t_ray *ray, int x);
 /*render/render_3D/dda_loop.c*/
 void	render_dda(t_game *game);
 
+/*render/render_3D/textures.c*/
+int		load_texture(t_game *game, t_tex *tex, char *path);
+int		load_textures(t_game *game);
+
 /* -------------------------------------------------------------------------- */
 /*                            MINIMAP — declarations                          */
 /* -------------------------------------------------------------------------- */
@@ -268,6 +289,7 @@ void	set_minimap_ray(t_game *game, t_ray *ray,
 		double dir_x, double dir_y);
 void	draw_ray_line(t_game *game, t_ray *ray);
 void	single_ray_loop(t_game *game, double dir_x, double dir_y);
+void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
 
 /*render/render_3d/dda_walk.c*/
 void	set_step_x(t_game *game, t_ray *ray);

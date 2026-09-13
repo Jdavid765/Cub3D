@@ -3,41 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   fake_dda_loop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 15:26:01 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/27 17:20:53 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/08/31 13:48:45 by pucci17pink      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+	fonction that basically render every ray thrown to the player position
+	and do the dda and fill every pixel line right in the image buffer
+*/
 void	render_dda(t_game *game)
 {
 	t_ray	ray;
-	int		x;
-	double	fake_dist;
+	int	x;
+	double	cam_x;
+	double	dir_x;
+	double	dir_y;
 
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
-		ft_bzero(&ray, sizeof(t_ray));
-		fake_dist = 3.0 + fabs((double)(x - WIN_WIDTH / 2))
-			/ (WIN_WIDTH / 2.0) * 6.0;
-		if (x % 40 < 20)
-			ray.side = 0;
-		else
-			ray.side = 1;
-		if (ray.side == 0)
-		{
-			ray.side_dist_x = fake_dist;
-			ray.delta_dist_x = 0;
-		}
-		else
-		{
-			ray.side_dist_y = fake_dist;
-			ray.delta_dist_y = 0;
-		}
+		cam_x = 2.0 * x / (double)WIN_WIDTH - 1.0;
+		dir_x = game->player.dir_x + game->player.plane_x * cam_x;
+		dir_y = game->player.dir_y + game->player.plane_y * cam_x;
+		cast_ray(game, &ray, dir_x, dir_y);
 		draw_wall(game, &ray, x);
 		x++;
 	}

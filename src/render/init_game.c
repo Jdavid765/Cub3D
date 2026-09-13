@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:27:29 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/18 14:46:08 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/09/07 15:34:05 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	init_mlx_win(t_game *game)
 			WIN_HEIGHT, "cub3D");
 	if (!game->mlx.win_ptr)
 		return (printf("Error: mlx_new_window\n"), 1);
+	if (load_textures(game))
+		return(1);
 	if (create_frame_buffer(game))
 		return (1);
 	mlx_loop_hook(game->mlx.mlx_ptr, hook_loop, game);
