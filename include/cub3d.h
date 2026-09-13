@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/07 16:30:04 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/13 21:42:58 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@
 # define MINIMAP_W      384 /*à essayer aussi 644*/
 # define MINIMAP_H      384
 
-
 /* 32-bit colours in ARGB format (0xAARRGGBB) */
-# define COLOR_WALL     0xFF444444 /* */
-# define COLOR_FLOOR    0xFFCCCCCC /* */
+# define COLOR_WALL     0xFF444444
+# define COLOR_FLOOR    0xFFCCCCCC
 # define COLOR_PLAYER   0xFFFF0000 /*red*/
 # define COLOR_DIR      0xFF00FF00 /* green*/
 # define COLOR_TESTER   0xFF00F7 /*purple*/
@@ -130,13 +129,13 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double		x; /*position du joueur sur la grille pos_x et y serait mieux*/
+	double		x;
 	double		y;
-	double		dir_x;/*vecteur de direction du joueur*/
+	double		dir_x;
 	double		dir_y;
-	double		plane_x;/*vecteur perpendiculaire à dir*/
+	double		plane_x;
 	double		plane_y;
-	t_direction	facing;/*orientation du joueur*/
+	t_direction	facing;
 }	t_player;
 
 typedef struct s_ray
@@ -160,7 +159,7 @@ typedef struct s_floodfil
 {
 	int		status;
 	char	letter;
-}		t_floodfil;
+}	t_floodfil;
 
 typedef struct s_game
 {
@@ -178,7 +177,11 @@ typedef struct s_game
 	t_mlx			mlx;
 	void			*frame_image;
 	unsigned int	*frame_buffer;
-	int				buffer_pitch; /*buffer de l'image a taille réele avec les pixels poubelle*/
+	int				buffer_pitch;
+	void			*t_no;
+	void			*t_so;
+	void			*t_ea;
+	void			*t_we;
 	t_keys			keys;
 }	t_game;
 
@@ -189,77 +192,109 @@ typedef struct s_game
 /* check_filename.c */
 int		check_filename(char *line, char *verif, t_game *game);
 
-/* take_map.c */
-int		open_file(t_game *filename);
+/* read_file.c */
+int		open_file(t_game *game);
 int		count_l(int fd);
 char	**read_all_lines(int fd, int total_lines);
+
+/* build_map.c */
 int		build_map(t_game *game, char **raw, int start, int total);
 int		split_config_and_map(t_game *game, char **raw, int total_lines);
 
-/* init.c */
-void	init(t_game *game);
-
-/* parsing/check_players.c */
-int		all_else_if(t_game *game, int y);
-int		check_other_player(t_game *game, char letter, int x, int y);
-
-/* parsing/check_map.c */
-int		check_player(t_game *game);
-
-/*parsing/parse_elements.c*/
+/* parse_elements.c */
 int		pars_identifier(t_game *game, char *line);
 int		pars_color(t_color *color, int *set_flag, char *str, int i);
 int		pars_texture(char **dest, char *path);
 int		pars_int(char **str, int *value);
 
-/*parsing/parse_utils.c*/
+/* parse_utils.c */
 int		is_empty_line(char *line);
 int		is_config_line(char *line);
 int		free_table(char **raw, int count);
 int		all_configuration_found(t_game *game);
 
-/*parsing/floodfil.c*/
+/* check_map.c */
+int		check_player(t_game *game);
+
+/* check_players.c */
+int		all_else_if(t_game *game, int y);
+int		check_other_player(t_game *game, char letter, int x, int y);
+
+/* floodfil.c */
 int		cpy_the_map(t_game *game);
 int		floodfil(t_game *game, int x, int y);
 
-/*clear/clear_core.c*/
-void	ft_exit(t_game *game);
+/* init.c */
+void	init(t_game *game);
 
-/*clear/utils.c*/
+/* -------------------------------------------------------------------------- */
+/*                           CLEANUP — declarations                           */
+/* -------------------------------------------------------------------------- */
+
+/* free.c */
 void	free_grid(t_game *game);
 void	free_cpygrid(t_game *game, int position);
+void	free_textures(t_game *game);
+void	free_mlx(t_game *game);
+
+/* exit.c */
+void	exit_all(t_game *game);
 
 /* -------------------------------------------------------------------------- */
-/*                           RENDERER — declarations                          */
+/*                           RENDER — declarations                            */
 /* -------------------------------------------------------------------------- */
 
-/* render/player.c */
+/* player.c */
 void	set_north(t_player *player);
 void	set_south(t_player *player);
 void	set_east(t_player *player);
 void	set_west(t_player *player);
 void	set_player_direction(t_game *game);
 
-/* render/init_game.c */
+/* init_mlx.c */
 int		init_mlx_win(t_game *game);
 int		create_frame_buffer(t_game *game);
 
-/* render/hooks.c */
+/* hooks.c */
 int		hook_loop(void *param);
 void	handle_rotation(t_game *game);
 
-/* render/hooks_key.c */
+/* hooks_key.c */
 int		key_press(int keycode, void *param);
 int		key_release(int keycode, void *param);
 void	handle_movement(t_game *game, double move_x, double move_y);
 int		is_wall(t_game *game, double x, double y);
 void	slide_move(t_game *game, double move_x, double move_y);
 
-/*render/render_3D/draw_wall.c*/
+/* pixel.c */
+void	put_pixel(t_game *game, int x, int y, unsigned int color);
+
+/* -------------------------------------------------------------------------- */
+/*                           RAYCASTING — declarations                        */
+/* -------------------------------------------------------------------------- */
+
+/* ray_setup.c */
+double	get_delta_dist(double ray_dir);
+void	set_minimap_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
+void	set_step_x(t_game *game, t_ray *ray);
+void	set_step_y(t_game *game, t_ray *ray);
+
+/* ray_walk.c */
+void	dda_walk(t_game *game, t_ray *ray);
+void	set_perp_dist(t_ray *ray);
+
+/* cast_ray.c */
+void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
+
+/* render_dda.c */
+void	render_dda(t_game *game);
+
+/* draw_wall.c */
 void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
 void	fill_wall(t_game *game, t_ray *ray, int x, int draw_start, int draw_end);
 void	draw_wall(t_game *game, t_ray *ray, int x);
 
+<<<<<<< HEAD
 /*render/render_3D/dda_loop.c*/
 void	render_dda(t_game *game);
 
@@ -267,34 +302,29 @@ void	render_dda(t_game *game);
 int		load_texture(t_game *game, t_tex *tex, char *path);
 int		load_textures(t_game *game);
 
+=======
+>>>>>>> link_features
 /* -------------------------------------------------------------------------- */
 /*                            MINIMAP — declarations                          */
 /* -------------------------------------------------------------------------- */
 
-/*mettre le chemin des dossiers*/
-void	draw_minimap_edge(t_game *game);
-int		get_cam_offset(double player_pos, int board_size);
-int		is_minimap_range(t_game *game, int col, int row);
-void	draw_plane_line(t_game *game);
-void	put_pixel(t_game *game, int x, int y, unsigned int color);
+/* minimap.c */
+void	render_minimap(t_game *game);
 void	draw_tile(t_game *game, int grid_col, int grid_row,
 		unsigned int color);
 void	draw_player(t_game *game);
-void	draw_all_rays(t_game *game);
-void	render_minimap(t_game *game);
+void	draw_minimap_edge(t_game *game);
 
-/*render/minimap/dda_logic.c*/
-double	get_delta_dist(double ray_dir);
-void	set_minimap_ray(t_game *game, t_ray *ray,
-		double dir_x, double dir_y);
+/* minimap_rays.c */
 void	draw_ray_line(t_game *game, t_ray *ray);
 void	single_ray_loop(t_game *game, double dir_x, double dir_y);
-void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
+void	draw_all_rays(t_game *game);
 
-/*render/render_3d/dda_walk.c*/
-void	set_step_x(t_game *game, t_ray *ray);
-void	set_step_y(t_game *game, t_ray *ray);
-void	set_perp_dist(t_ray *ray);
-void	dda_walk(t_game *game, t_ray *ray);
+/* minimap_utils.c */
+int		get_cam_offset(double player_pos, int board_size);
+int		is_minimap_range(t_game *game, int col, int row);
+
+/* main.c */
+int		cub3d(t_game *game);
 
 #endif

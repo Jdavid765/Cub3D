@@ -1,44 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_logic.c                                        :+:      :+:    :+:   */
+/*   minimap_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/14 13:13:06 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/31 15:58:24 by pucci17pink      ###   ########.fr       */
+/*   Created: 2026/09/07 12:30:00 by pucci17pink        #+#    #+#             */
+/*   Updated: 2026/09/07 12:30:00 by pucci17pink       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/*
- * Distance the ray travels to cross one full grid cell.
- * A ray_dir close to zero means the ray is almost parallel to that
- * axis, so we return a huge value: this axis is then never the
- * closest one and the walk stays safe.
- */
-double	get_delta_dist(double ray_dir)
-{
-	if (ray_dir > -0.000001 && ray_dir < 0.000001)
-		return (1e30);
-	return (fabs(1.0 / ray_dir));
-}
-
-/*
- * Prepare one ray before the walk starts.
- * The ray leaves the player, so it starts inside the player cell.
- */
-void	set_minimap_ray(t_game *game, t_ray *ray, double dir_x, double dir_y)
-{
-	ray->dir_x = dir_x;
-	ray->dir_y = dir_y;
-	ray->map_x = (int)game->player.x;
-	ray->map_y = (int)game->player.y;
-	ray->delta_dist_x = get_delta_dist(dir_x);
-	ray->delta_dist_y = get_delta_dist(dir_y);
-	ray->hit = 0;
-}
 
 /*
  * Draw one ray on the minimap, stopping right on the wall it hit.
@@ -65,24 +37,10 @@ void	draw_ray_line(t_game *game, t_ray *ray)
 			&& center_y + (ray->dir_y * step) < MINIMAP_H)
 		{
 			put_pixel(game, center_x + (int)(ray->dir_x * step),
-			center_y + (int)(ray->dir_y * step), COLOR_DIR);
+				center_y + (int)(ray->dir_y * step), COLOR_DIR);
 		}
 		step++;
 	}
-}
-
-/*
- * Full DDA for one ray: setup, first step, walk, then draw it.
- * On exit the ray holds the wall cell, the touched side, both
- * side_dist values and perp_dist, all the 3D render needs.
- */
-void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y)
-{
-	ft_bzero(ray, sizeof(t_ray));
-	set_minimap_ray(game, ray, dir_x, dir_y);
-	set_step_x(game, ray);
-	set_step_y(game, ray);
-	dda_walk(game, ray);
 }
 
 void	single_ray_loop(t_game *game, double dir_x, double dir_y)

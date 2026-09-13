@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/31 15:59:09 by pucci17pink      ###   ########.fr       */
+/*   Created: 2026/09/07 12:30:00 by pucci17pink        #+#    #+#             */
+/*   Updated: 2026/09/07 12:30:00 by pucci17pink       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	render_minimap(t_game *game)
 	draw_player(game);
 	draw_all_rays(game);
 	draw_minimap_edge(game);
-	//draw_plane_line(game);
 }
 
 /*
@@ -98,35 +97,6 @@ void	draw_player(t_game *game)
 			pos_x++;
 		}
 		pos_y++;
-	}
-}
-
-void	draw_plane_line(t_game *game)
-{
-	int		center_x;
-	int		center_y;
-	double	length;
-	int		step;
-
-	center_x = (int)((MINIMAP_TILE / 2) * game->player.dir_x) + (MINIMAP_W / 2);
-	center_y = (int)((MINIMAP_TILE / 2) * game->player.dir_y) + (MINIMAP_H / 2);
-	length = MINIMAP_TILE / 2;
-	step = 0;
-	while (step < (int)length)
-	{
-		put_pixel(game,
-			center_x + (int)(game->player.plane_x * step),
-			center_y + (int)(game->player.plane_y * step),
-			COLOR_PLANE);
-		game->player.plane_x *= -1;
-		game->player.plane_y *= -1;
-		put_pixel(game,
-			center_x + (int)(game->player.plane_x * step),
-			center_y + (int)(game->player.plane_y * step),
-			COLOR_PLANE);
-		game->player.plane_x *= -1;
-		game->player.plane_y *= -1;
-		step++;
 	}
 }
 
