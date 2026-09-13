@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/07 16:30:04 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/13 20:39:23 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define MINIMAP_TILE   128
 # define MINIMAP_W      384 /*à essayer aussi 644*/
 # define MINIMAP_H      384
-
 
 /* 32-bit colours in ARGB format (0xAARRGGBB) */
 # define COLOR_WALL     0xFF444444 /* */
@@ -178,7 +177,7 @@ typedef struct s_game
 	t_mlx			mlx;
 	void			*frame_image;
 	unsigned int	*frame_buffer;
-	int				buffer_pitch; /*buffer de l'image a taille réele avec les pixels poubelle*/
+	int				buffer_pitch;
 	t_keys			keys;
 }	t_game;
 
@@ -257,8 +256,15 @@ void	slide_move(t_game *game, double move_x, double move_y);
 
 /*render/render_3D/draw_wall.c*/
 void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
-void	fill_wall(t_game *game, t_ray *ray, int x, int draw_start, int draw_end);
+// void	fill_wall(t_game *game, t_ray *ray, int x, int draw_start, int draw_end);
 void	draw_wall(t_game *game, t_ray *ray, int x);
+
+/*render/render_3D/draw_wall_utils.c*/
+double			get_tex_start(int draw_start, int line_height, double step);
+double			get_tex_step(t_tex *tex, int line_height);
+unsigned int	get_tex_color(t_tex *tex, int tex_x, int tex_y, int side);
+int				get_tex_x(t_ray *ray, t_tex *tex, double wall_x);
+double			get_wall_x(t_game *game, t_ray *ray);
 
 /*render/render_3D/dda_loop.c*/
 void	render_dda(t_game *game);
@@ -278,7 +284,7 @@ int		is_minimap_range(t_game *game, int col, int row);
 void	draw_plane_line(t_game *game);
 void	put_pixel(t_game *game, int x, int y, unsigned int color);
 void	draw_tile(t_game *game, int grid_col, int grid_row,
-		unsigned int color);
+			unsigned int color);
 void	draw_player(t_game *game);
 void	draw_all_rays(t_game *game);
 void	render_minimap(t_game *game);
@@ -286,7 +292,7 @@ void	render_minimap(t_game *game);
 /*render/minimap/dda_logic.c*/
 double	get_delta_dist(double ray_dir);
 void	set_minimap_ray(t_game *game, t_ray *ray,
-		double dir_x, double dir_y);
+			double dir_x, double dir_y);
 void	draw_ray_line(t_game *game, t_ray *ray);
 void	single_ray_loop(t_game *game, double dir_x, double dir_y);
 void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
