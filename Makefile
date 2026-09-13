@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/09/13 21:42:52 by canoduran        ###   ########.fr        #
+#    Updated: 2026/09/13 21:51:37 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_RAYCASTING)/cast_ray.c \
 	$(DIR_RAYCASTING)/render_dda.c \
 	$(DIR_RAYCASTING)/draw_wall.c \
+	$(DIR_RAYCASTING)/textures.c \
 	$(DIR_MINIMAP)/minimap.c \
 	$(DIR_MINIMAP)/minimap_rays.c \
 	$(DIR_MINIMAP)/minimap_utils.c
@@ -114,7 +115,7 @@ $(MLX):
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ) $(GNL_OBJ)
 	@echo
-	@$(CC) $(CFLAGS) $(OBJ) $(GNL_OBJ) 2>/dev/null $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(GNL_OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
 
 clean:
 	@printf "$(RED)Cleaning object files...$(RESET)\n"
