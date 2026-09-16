@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/13 23:25:46 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/15 22:24:43 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,22 +256,24 @@ void	slide_move(t_game *game, double move_x, double move_y);
 
 /*render/render_3D/draw_wall.c*/
 void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
-// void	fill_wall(t_game *game, t_ray *ray, int x, int draw_start, int draw_end);
 void	draw_wall(t_game *game, t_ray *ray, int x);
 
 /*render/render_3D/draw_wall_utils.c*/
 double	get_tex_start(int draw_start, int line_height, double step);
-double		get_tex_step(t_tex *tex, int line_height);
+double	get_tex_step(t_tex *tex, int line_height);
 unsigned int	get_tex_color(t_tex *tex, int tex_x, int tex_y, int side);
 int		get_tex_x(t_ray *ray, t_tex *tex, double wall_x);
-double		get_wall_x(t_game *game, t_ray *ray);
+double	get_wall_x(t_game *game, t_ray *ray);
 
 /*render/render_3D/dda_loop.c*/
-void			render_dda(t_game *game);
+void	render_dda(t_game *game);
 
 /*render/render_3D/textures.c*/
-int				load_texture(t_game *game, t_tex *tex, char *path);
-int				load_textures(t_game *game);
+int		load_texture(t_game *game, t_tex *tex, char *path);
+int		load_textures(t_game *game);
+
+/*render/render_3D/convert_colors.c*/
+unsigned int	color_to_int(t_color c);
 
 /* -------------------------------------------------------------------------- */
 /*                            MINIMAP — declarations                          */
