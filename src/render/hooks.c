@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:30:00 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/09/09 12:08:46 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 14:05:16 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ void	handle_rotation(t_game *game)
 	angle = ROT_SPEED;
 	if (game->keys.rotate_right)
 		angle = -angle;
-	/*on applique la rotation au point dir*/
 	prev_dir_x = game->player.dir_x;
 	game->player.dir_x = game->player.dir_x * cos(angle)
 		- game->player.dir_y * sin(angle);
 	game->player.dir_y = prev_dir_x * sin(angle)
 		+ game->player.dir_y * cos(angle);
-	/*et l'applique aussi a plane*/
 	prev_plane_x = game->player.plane_x;
 	game->player.plane_x = game->player.plane_x * cos(angle)
 		- game->player.plane_y * sin(angle);

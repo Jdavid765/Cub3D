@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/15 22:15:34 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/15 22:25:59 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 17:01:59 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 unsigned int	color_to_int(t_color c)
 {
-	return(0xFF000000 | (c.r << 16) | (c.g << 8) | c.b);
+	return (0xFF000000 | (c.r << 16) | (c.g << 8) | c.b);
 }

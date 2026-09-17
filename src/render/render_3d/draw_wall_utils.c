@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 13:37:57 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/13 21:17:09 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 17:05:05 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ double	get_tex_step(t_tex *tex, int line_height)
 	return ((double)tex->height / line_height);
 }
 
-/*Retrieves the texture pixel color at (tex_x, tex_y), darkened if the wall is on the Y-side*/
+/*Retrieves the texture pixel color at (tex_x, tex_y), 
+darkened if the wall is on the Y-side*/
 unsigned int	get_tex_color(t_tex *tex, int tex_x, int tex_y, int side)
 {
 	unsigned int	color;
 	int				tex_width;
- 
+
 	tex_width = tex->line_len / (tex->bpp / 8);
 	color = ((unsigned int *)tex->addr)[tex_y * tex_width + tex_x];
 	if (side == 1)
@@ -37,12 +38,13 @@ unsigned int	get_tex_color(t_tex *tex, int tex_x, int tex_y, int side)
 	return (color);
 }
 
-/*Calculates the texture column to use, correcting for the mirroring effect based on the face hit.*/
+/*Calculates the texture column to use, correcting 
+for the mirroring effect based on the face hit.*/
 int	get_tex_x(t_ray *ray, t_tex *tex, double wall_x)
 {
 	int		tex_x;
 	int		face_vue_de_face;
- 
+
 	tex_x = (int)(wall_x * (double)tex->width);
 	face_vue_de_face = (ray->side == 0 && ray->dir_x > 0)
 		|| (ray->side == 1 && ray->dir_y < 0);
@@ -51,11 +53,12 @@ int	get_tex_x(t_ray *ray, t_tex *tex, double wall_x)
 	return (tex_x);
 }
 
-/*Calculates the relative position (0 to 1) of the ray's impact point on the wall.*/
+/*Calculates the relative position (0 to 1) 
+of the ray's impact point on the wall.*/
 double	get_wall_x(t_game *game, t_ray *ray)
 {
 	double	wall_x;
- 
+
 	if (ray->side == 0)
 		wall_x = game->player.y + ray->perp_dist * ray->dir_y;
 	else

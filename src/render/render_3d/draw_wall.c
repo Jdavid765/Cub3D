@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:16:12 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/15 22:18:41 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 17:01:41 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	get_line_height(t_ray *ray)
 {
 	int	height;
- 
+
 	height = (int)(WIN_HEIGHT / ray->perp_dist);
 	if (height < 1)
 		height = 1;
@@ -27,7 +27,7 @@ int	get_line_height(t_ray *ray)
 void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end)
 {
 	int	line_height;
- 
+
 	line_height = get_line_height(ray);
 	*draw_start = WIN_HEIGHT / 2 - line_height / 2;
 	if (*draw_start < 0)
@@ -36,7 +36,6 @@ void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end)
 	if (*draw_end >= WIN_HEIGHT)
 		*draw_end = WIN_HEIGHT - 1;
 }
-
 
 t_tex	*choose_texture(t_game *game, t_ray *ray)
 {
@@ -61,7 +60,7 @@ void	draw_wall_strip(t_game *game, t_ray *ray, int x,
 	int		tex_x;
 	int		line_height;
 	int		y;
- 
+
 	tex = choose_texture(game, ray);
 	tex_x = get_tex_x(ray, tex, get_wall_x(game, ray));
 	line_height = get_line_height(ray);
