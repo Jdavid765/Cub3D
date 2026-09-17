@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/17 11:12:11 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 11:28:13 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,11 +189,17 @@ typedef struct s_game
 int		check_filename(char *line, char *verif, t_game *game);
 
 /* take_map.c */
-int		open_file(t_game *filename);
-int		count_l(int fd);
-char	**read_all_lines(int fd, int total_lines);
 int		build_map(t_game *game, char **raw, int start, int total);
 int		split_config_and_map(t_game *game, char **raw, int total_lines);
+int		open_file(t_game *game);
+int		count_l(int fd);
+char	**read_all_lines(int fd, int total_lines);
+
+/*src/map/pad_map.c*/
+void	strip_newline(char *line);
+int		pad_map_line(char **line, int width);
+int		fill_map_grid(t_game *game, char **raw, int start, int count);
+int		pad_map(t_game *game);
 
 /* init.c */
 void	init(t_game *game);

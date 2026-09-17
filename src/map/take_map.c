@@ -6,9 +6,11 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 12:21:40 by canoduran         #+#    #+#             */
-/*   Updated: 2026/07/23 18:37:23 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 11:27:22 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../include/cub3d.h"
 
 #include "../../include/cub3d.h"
 
@@ -36,8 +38,6 @@ char	**read_all_lines(int fd, int total_lines)
 int	build_map(t_game *game, char **raw, int start, int total)
 {
 	int	count;
-	int	len;
-	int	i;
 
 	count = total - start;
 	if (count <= 0)
@@ -45,21 +45,10 @@ int	build_map(t_game *game, char **raw, int start, int total)
 	game->map.grid = malloc(sizeof(char *) * (count + 1));
 	if (!game->map.grid)
 		return (1);
-	game->map.width = 0;
-	i = 0;
-	while (i < count)
-	{
-		game->map.grid[i] = raw[start + i];
-		raw[start + i] = NULL;
-		len = ft_strlen(game->map.grid[i]);
-		if (len > game->map.width)
-			game->map.width = len;
-		i++;
-	}
-	game->map.grid[i] = NULL;
+	fill_map_grid(game, raw, start, count);
 	game->map.height = count;
 	game->count_line = count;
-	return (0);
+	return (pad_map(game));
 }
 /*now when i know where i need to start for take only the maps
 i take the pointer i don't need to duplicate and i have only the map*/
@@ -135,4 +124,3 @@ int	count_l(int fd)
 	}
 	return (count);
 }
-/*I can count line for my table how many table i need to malloc*/

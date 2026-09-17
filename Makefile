@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/09/15 22:16:56 by canoduran        ###   ########.fr        #
+#    Updated: 2026/09/17 11:25:42 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ OBJ_DIR     = obj
 SRC = $(DIR_SRC)/main.c \
 	$(DIR_MAP)/check_filename.c \
 	$(DIR_MAP)/take_map.c \
+	$(DIR_MAP)/pad_map.c \
 	$(DIR_SRC)/init.c \
 	$(DIR_PARSING)/check_map.c \
 	$(DIR_PARSING)/check_players.c \
