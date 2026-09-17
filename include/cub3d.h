@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/15 22:24:43 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 11:12:11 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ int		floodfil(t_game *game, int x, int y);
 
 /*clear/clear_core.c*/
 void	ft_exit(t_game *game);
+int		close_game(int keycode, void *param);
 
 /*clear/utils.c*/
 void	free_grid(t_game *game);

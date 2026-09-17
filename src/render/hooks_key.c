@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/13 15:00:00 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/07/23 14:49:15 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/09/17 11:07:37 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ int	key_press(int keycode, void *param)
 
 	game = (t_game *)param;
 	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_ptr);
-		exit(0);/*à améliorer*/
-	}
+		close_game(keycode, game);
 	if (keycode == KEY_W)
 		game->keys.forward = true;
 	if (keycode == KEY_A)

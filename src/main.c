@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:48:29 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/09 14:30:25 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 11:09:01 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	main(int ac, char **av)
 		return (ft_exit(&game), 1);
 	set_player_direction(&game);
 	if (init_mlx_win(&game))
-		return (printf("Error: MLX init failed\n"), 1);
+		return (ft_exit(&game), printf("Error: MLX init failed\n"), 1);
 	return (0);
 }
