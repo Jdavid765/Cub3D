@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/20 20:51:45 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/20 20:57:54 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,8 @@ void	free_mlx(t_game *game);
 /* exit.c */
 void	exit_all(t_game *game);
 
+void	init(t_game *game);
+
 /* -------------------------------------------------------------------------- */
 /*                           RENDER — declarations                            */
 /* -------------------------------------------------------------------------- */
@@ -288,6 +290,20 @@ double	get_delta_dist(double ray_dir);
 void	set_minimap_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
 void	set_step_x(t_game *game, t_ray *ray);
 void	set_step_y(t_game *game, t_ray *ray);
+
+/* ray_walk.c */
+void	dda_walk(t_game *game, t_ray *ray);
+void	set_perp_dist(t_ray *ray);
+
+/* cast_ray.c */
+void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
+
+/* render_dda.c */
+void	render_dda(t_game *game);
+
+/* draw_wall.c */
+void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
+void	draw_wall(t_game *game, t_ray *ray, int x);
 
 /* ray_walk.c */
 void	dda_walk(t_game *game, t_ray *ray);
