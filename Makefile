@@ -6,12 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2026/09/20 20:51:10 by canoduran        ###   ########.fr        #
-=======
-#    Updated: 2026/09/20 20:19:36 by canoduran        ###   ########.fr        #
-#    Updated: 2026/09/13 21:51:37 by canoduran        ###   ########.fr        #
->>>>>>> 62d8d01deda7f69c8a12cdf1b2cb3bb778380df2
+#    Updated: 2026/09/20 21:00:16 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,20 +63,10 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_RAYCASTING)/textures.c \
 	$(DIR_MINIMAP)/minimap.c \
 	$(DIR_MINIMAP)/minimap_rays.c \
-<<<<<<< HEAD
 	$(DIR_MINIMAP)/minimap_utils.c \
 	$(DIR_RAYCASTING)/draw_wall_utils.c \
 	$(DIR_RAYCASTING)/convert_colors.c
-=======
-	$(DIR_MINIMAP)/minimap_utils.c
-	$(DIR_MINIMAP)/minimap_utils.c \
-	$(DIR_RENDER3D)/draw_wall.c \
-	$(DIR_RENDER3D)/draw_wall_utils.c \
-	$(DIR_MINIMAP)/dda_logic.c \
-	$(DIR_RENDER3D)/dda_walk.c \
-	$(DIR_RENDER3D)/convert_colors.c 
 
->>>>>>> 62d8d01deda7f69c8a12cdf1b2cb3bb778380df2
 
 # --- GNL SOURCES ---
 GNL_SRC = $(GNL_DIR)/get_next_line.c \
