@@ -188,6 +188,12 @@ typedef struct s_game
 /* check_filename.c */
 int		check_filename(char *line, char *verif, t_game *game);
 
+/* read_file.c */
+int		open_file(t_game *game);
+int		count_l(int fd);
+char	**read_all_lines(int fd, int total_lines);
+
+/* build_map.c */
 /* take_map.c */
 int		build_map(t_game *game, char **raw, int start, int total);
 int		split_config_and_map(t_game *game, char **raw, int total_lines);
@@ -223,6 +229,9 @@ int		check_other_player(t_game *game, char letter, int x, int y);
 /* floodfil.c */
 int		cpy_the_map(t_game *game);
 int		floodfil(t_game *game, int x, int y);
+
+/* init.c */
+void	init(t_game *game);
 
 /*clear/clear_core.c*/
 void	ft_exit(t_game *game);
@@ -296,15 +305,19 @@ void	render_dda(t_game *game);
 void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
 void	draw_wall(t_game *game, t_ray *ray, int x);
 
-/*render/render_3D/draw_wall_utils.c*/
-double	get_tex_start(int draw_start, int line_height, double step);
-double	get_tex_step(t_tex *tex, int line_height);
-unsigned int	get_tex_color(t_tex *tex, int tex_x, int tex_y, int side);
-int		get_tex_x(t_ray *ray, t_tex *tex, double wall_x);
-double	get_wall_x(t_game *game, t_ray *ray);
+/* ray_walk.c */
+void	dda_walk(t_game *game, t_ray *ray);
+void	set_perp_dist(t_ray *ray);
 
-/*render/render_3D/textures.c*/
-int		load_texture(t_game *game, t_tex *tex, char *path);
+/* cast_ray.c */
+void	cast_ray(t_game *game, t_ray *ray, double dir_x, double dir_y);
+
+/* render_dda.c */
+void	render_dda(t_game *game);
+
+/* draw_wall.c */
+void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
+void	draw_wall(t_game *game, t_ray *ray, int x);
 int		load_textures(t_game *game);
 
 /*render/render_3D/convert_colors.c*/
@@ -321,6 +334,7 @@ void	draw_tile(t_game *game, int grid_col, int grid_row,
 void	draw_player(t_game *game);
 void	draw_minimap_edge(t_game *game);
 
+/* minimap_rays.c */
 /*render/minimap/dda_logic.c*/
 double	get_delta_dist(double ray_dir);
 void	set_minimap_ray(t_game *game, t_ray *ray,

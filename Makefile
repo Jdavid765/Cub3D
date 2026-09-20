@@ -7,6 +7,7 @@
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
 #    Updated: 2026/09/20 20:19:36 by canoduran        ###   ########.fr        #
+#    Updated: 2026/09/13 21:51:37 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +39,6 @@ OBJ_DIR        = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
-	$(DIR_MAP)/check_filename.c \
-	$(DIR_MAP)/take_map.c \
-	$(DIR_MAP)/pad_map.c \
 	$(DIR_SRC)/init.c \
 	$(DIR_PARSING)/check_filename.c \
 	$(DIR_PARSING)/read_file.c \
@@ -56,8 +54,16 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_RENDER)/init_mlx.c \
 	$(DIR_RENDER)/hooks.c \
 	$(DIR_RENDER)/hooks_key.c \
-	$(DIR_RENDER3D)/textures.c \
+	$(DIR_RENDER)/pixel.c \
+	$(DIR_RAYCASTING)/ray_setup.c \
+	$(DIR_RAYCASTING)/ray_walk.c \
+	$(DIR_RAYCASTING)/cast_ray.c \
+	$(DIR_RAYCASTING)/render_dda.c \
+	$(DIR_RAYCASTING)/draw_wall.c \
+	$(DIR_RAYCASTING)/textures.c \
 	$(DIR_MINIMAP)/minimap.c \
+	$(DIR_MINIMAP)/minimap_rays.c \
+	$(DIR_MINIMAP)/minimap_utils.c
 	$(DIR_MINIMAP)/minimap_utils.c \
 	$(DIR_RENDER3D)/draw_wall.c \
 	$(DIR_RENDER3D)/draw_wall_utils.c \
@@ -117,7 +123,7 @@ $(MLX):
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ) $(GNL_OBJ)
 	@echo
-	@$(CC) $(CFLAGS) $(OBJ) $(GNL_OBJ) 2>/dev/null $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(GNL_OBJ) $(LIBFT) $(MLX) -lXext -lX11 -lm -o $(NAME)
 
 clean:
 	@printf "$(RED)Cleaning object files...$(RESET)\n"
