@@ -6,11 +6,8 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-<<<<<<< HEAD
+#    Updated: 2026/09/20 20:19:36 by canoduran        ###   ########.fr        #
 #    Updated: 2026/09/13 21:51:37 by canoduran        ###   ########.fr        #
-=======
-#    Updated: 2026/09/20 20:12:21 by canoduran        ###   ########.fr        #
->>>>>>> jd_6
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +39,6 @@ OBJ_DIR        = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
-<<<<<<< HEAD
-=======
-	$(DIR_MAP)/check_filename.c \
-	$(DIR_MAP)/take_map.c \
-	$(DIR_MAP)/pad_map.c \
->>>>>>> jd_6
 	$(DIR_SRC)/init.c \
 	$(DIR_PARSING)/check_filename.c \
 	$(DIR_PARSING)/read_file.c \
@@ -71,10 +62,8 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_RAYCASTING)/draw_wall.c \
 	$(DIR_RAYCASTING)/textures.c \
 	$(DIR_MINIMAP)/minimap.c \
-<<<<<<< HEAD
 	$(DIR_MINIMAP)/minimap_rays.c \
 	$(DIR_MINIMAP)/minimap_utils.c
-=======
 	$(DIR_MINIMAP)/minimap_utils.c \
 	$(DIR_RENDER3D)/draw_wall.c \
 	$(DIR_RENDER3D)/draw_wall_utils.c \
@@ -82,7 +71,6 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_RENDER3D)/dda_walk.c \
 	$(DIR_RENDER3D)/convert_colors.c 
 
->>>>>>> jd_6
 
 # --- GNL SOURCES ---
 GNL_SRC = $(GNL_DIR)/get_next_line.c \
