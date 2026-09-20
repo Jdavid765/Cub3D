@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 19:16:12 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/17 17:01:41 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/20 20:05:42 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,21 @@ t_tex	*choose_texture(t_game *game, t_ray *ray)
 	return (&game->tex[TEX_NO]);
 }
 
-/*Draws the textured wall of column x pixel by pixel, between draw_start and draw_end*/
-void	draw_wall_strip(t_game *game, t_ray *ray, int x,
-		int draw_start, int draw_end)
+/* Draws the textured wall of column x, pixel by pixel */
+void	draw_wall_strip(t_game *game, t_ray *ray, int x, int *range)
 {
 	t_tex	*tex;
 	double	step;
 	double	tex_pos;
 	int		tex_x;
-	int		line_height;
 	int		y;
 
 	tex = choose_texture(game, ray);
 	tex_x = get_tex_x(ray, tex, get_wall_x(game, ray));
-	line_height = get_line_height(ray);
-	step = get_tex_step(tex, line_height);
-	tex_pos = get_tex_start(draw_start, line_height, step);
-	y = draw_start;
-	while (y <= draw_end)
+	step = get_tex_step(tex, get_line_height(ray));
+	tex_pos = get_tex_start(range[0], get_line_height(ray), step);
+	y = range[0];
+	while (y <= range[1])
 	{
 		put_pixel(game, x, y, get_tex_color(tex, tex_x,
 				(int)tex_pos % tex->height, ray->side));
@@ -76,21 +73,24 @@ void	draw_wall_strip(t_game *game, t_ray *ray, int x,
 	}
 }
 
-/*Draw the entire x-column: sky at the top, textured wall, then ground at the bottom*/
+/* Draws the x-column: sky, textured wall, then ground */
 void	draw_wall(t_game *game, t_ray *ray, int x)
 {
 	int	draw_start;
 	int	draw_end;
 	int	y;
+	int	range[2];
 
 	correction_fisheye(ray, &draw_start, &draw_end);
+	range[0] = draw_start;
+	range[1] = draw_end;
 	y = 0;
 	while (y < draw_start)
 	{
 		put_pixel(game, x, y, color_to_int(game->ceiling_color));
 		y++;
 	}
-	draw_wall_strip(game, ray, x, draw_start, draw_end);
+	draw_wall_strip(game, ray, x, range);
 	y = draw_end + 1;
 	while (y < WIN_HEIGHT)
 	{

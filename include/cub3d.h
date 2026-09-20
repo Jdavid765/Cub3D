@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/17 11:28:13 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/20 20:12:16 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,9 +271,6 @@ double	get_tex_step(t_tex *tex, int line_height);
 unsigned int	get_tex_color(t_tex *tex, int tex_x, int tex_y, int side);
 int		get_tex_x(t_ray *ray, t_tex *tex, double wall_x);
 double	get_wall_x(t_game *game, t_ray *ray);
-
-/*render/render_3D/dda_loop.c*/
-void	render_dda(t_game *game);
 
 /*render/render_3D/textures.c*/
 int		load_texture(t_game *game, t_tex *tex, char *path);

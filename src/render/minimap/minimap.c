@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:24:28 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/08/31 15:59:09 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/09/20 20:10:06 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	render_minimap(t_game *game)
 	draw_player(game);
 	draw_all_rays(game);
 	draw_minimap_edge(game);
-	//draw_plane_line(game);
 }
 
 /*
