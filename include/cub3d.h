@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/20 20:28:13 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/20 20:51:45 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,6 +303,13 @@ void	render_dda(t_game *game);
 void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
 void	draw_wall(t_game *game, t_ray *ray, int x);
 int		load_textures(t_game *game);
+
+/* draw_wall_utils.c */
+double			get_tex_start(int draw_start, int line_height, double step);
+double			get_tex_step(t_tex *tex, int line_height);
+unsigned int	get_tex_color(t_tex *tex, int tex_x, int tex_y, int side);
+int				get_tex_x(t_ray *ray, t_tex *tex, double wall_x);
+double			get_wall_x(t_game *game, t_ray *ray);
 
 /*render/render_3D/convert_colors.c*/
 unsigned int	color_to_int(t_color c);

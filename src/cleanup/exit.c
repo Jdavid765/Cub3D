@@ -6,16 +6,19 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 21:39:37 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/20 20:28:27 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/20 20:52:27 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
- * Release everything the game allocated ,in one place.
- * Called on ESC and on any early error in main.
- */
+void	ft_exit(t_game *game)
+{
+	free_grid(game);
+	free_textures(game);
+	free_mlx(game);
+}
+
 void	exit_all(t_game *game)
 {
 	free_grid(game);

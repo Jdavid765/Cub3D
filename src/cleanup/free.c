@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/07 12:30:00 by pucci17pink        #+#    #+#             */
-/*   Updated: 2026/09/08 14:34:45 by pucci17pink       ###   ########.fr       */
+/*   Created: 2026/09/07 12:30:00 by pucci17pink       #+#    #+#             */
+/*   Updated: 2026/09/20 20:56:19 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ void	free_textures(t_game *game)
 		free(game->texture.we);
 	if (game->texture.ea)
 		free(game->texture.ea);
-	if (game->t_no)
-		mlx_destroy_image(game->mlx.mlx_ptr, game->t_no);
-	if (game->t_so)
-		mlx_destroy_image(game->mlx.mlx_ptr, game->t_so);
-	if (game->t_we)
-		mlx_destroy_image(game->mlx.mlx_ptr, game->t_we);
-	if (game->t_ea)
-		mlx_destroy_image(game->mlx.mlx_ptr, game->t_ea);
+	if (game->tex[TEX_NO].img)
+		mlx_destroy_image(game->mlx.mlx_ptr, game->tex[TEX_NO].img);
+	if (game->tex[TEX_SO].img)
+		mlx_destroy_image(game->mlx.mlx_ptr, game->tex[TEX_SO].img);
+	if (game->tex[TEX_WE].img)
+		mlx_destroy_image(game->mlx.mlx_ptr, game->tex[TEX_WE].img);
+	if (game->tex[TEX_EA].img)
+		mlx_destroy_image(game->mlx.mlx_ptr, game->tex[TEX_EA].img);
 }
 
 /*
