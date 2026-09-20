@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 12:30:00 by pucci17pink        #+#    #+#             */
 /*   Updated: 2026/09/07 12:30:00 by pucci17pink       ###   ########.fr       */

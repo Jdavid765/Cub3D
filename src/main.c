@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
+/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:48:29 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/08 13:26:11 by pucci17pink      ###   ########.fr       */
+/*   Updated: 2026/09/20 20:30:19 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	main(int ac, char **av)
 		return (exit_all(&game), 1);
 	set_player_direction(&game);
 	if (init_mlx_win(&game))
-		return (printf("Error: MLX init failed\n"), 1);
+		return (ft_exit(&game), printf("Error: MLX init failed\n"), 1);
 	return (0);
 }

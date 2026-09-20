@@ -6,12 +6,12 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 15:19:53 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/07 16:36:37 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/17 17:02:52 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-	
+
 int	load_texture(t_game *game, t_tex *tex, char *path)
 {
 	tex->img = mlx_xpm_file_to_image(game->mlx.mlx_ptr, path,
@@ -24,7 +24,7 @@ int	load_texture(t_game *game, t_tex *tex, char *path)
 		return (printf("Error: texture addr %s \n", path), 1);
 	return (0);
 }
-	
+
 int	load_textures(t_game *game)
 {
 	if (load_texture(game, &game->tex[TEX_NO], game->texture.no))

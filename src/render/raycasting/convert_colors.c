@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   convert_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/12 13:09:45 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/12 13:45:43 by canoduran        ###   ########.fr       */
+/*   Created: 2026/09/15 22:15:34 by canoduran         #+#    #+#             */
+/*   Updated: 2026/09/17 17:01:59 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init(t_game *game)
+unsigned int	color_to_int(t_color c)
 {
-	ft_bzero(game, sizeof(t_game));
-	ft_bzero(&game->player, sizeof(t_player));
-	ft_bzero(&game->map, sizeof(t_map));
-	game->player.facing = DIR_NONE;
+	return (0xFF000000 | (c.r << 16) | (c.g << 8) | c.b);
 }

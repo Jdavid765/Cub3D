@@ -48,7 +48,7 @@ int	init_mlx_win(t_game *game)
 	if (!game->mlx.win_ptr)
 		return (printf("Error: mlx_new_window\n"), 1);
 	if (load_textures(game))
-		return(1);
+		return (1);
 	if (create_frame_buffer(game))
 		return (1);
 	mlx_loop_hook(game->mlx.mlx_ptr, hook_loop, game);

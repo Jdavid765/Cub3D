@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/13 21:46:39 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/20 20:28:13 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,10 +178,6 @@ typedef struct s_game
 	void			*frame_image;
 	unsigned int	*frame_buffer;
 	int				buffer_pitch;
-	void			*t_no;
-	void			*t_so;
-	void			*t_ea;
-	void			*t_we;
 	t_keys			keys;
 }	t_game;
 
@@ -198,8 +194,18 @@ int		count_l(int fd);
 char	**read_all_lines(int fd, int total_lines);
 
 /* build_map.c */
+/* take_map.c */
 int		build_map(t_game *game, char **raw, int start, int total);
 int		split_config_and_map(t_game *game, char **raw, int total_lines);
+int		open_file(t_game *game);
+int		count_l(int fd);
+char	**read_all_lines(int fd, int total_lines);
+
+/*src/map/pad_map.c*/
+void	strip_newline(char *line);
+int		pad_map_line(char **line, int width);
+int		fill_map_grid(t_game *game, char **raw, int start, int count);
+int		pad_map(t_game *game);
 
 /* parse_elements.c */
 int		pars_identifier(t_game *game, char *line);
@@ -226,6 +232,10 @@ int		floodfil(t_game *game, int x, int y);
 
 /* init.c */
 void	init(t_game *game);
+
+/*clear/clear_core.c*/
+void	ft_exit(t_game *game);
+int		close_game(int keycode, void *param);
 
 /* -------------------------------------------------------------------------- */
 /*                           CLEANUP — declarations                           */
@@ -291,9 +301,11 @@ void	render_dda(t_game *game);
 
 /* draw_wall.c */
 void	correction_fisheye(t_ray *ray, int *draw_start, int *draw_end);
-void	fill_wall(t_game *game, t_ray *ray, int x, int draw_start, int draw_end);
 void	draw_wall(t_game *game, t_ray *ray, int x);
 int		load_textures(t_game *game);
+
+/*render/render_3D/convert_colors.c*/
+unsigned int	color_to_int(t_color c);
 
 /* -------------------------------------------------------------------------- */
 /*                            MINIMAP — declarations                          */
@@ -302,11 +314,15 @@ int		load_textures(t_game *game);
 /* minimap.c */
 void	render_minimap(t_game *game);
 void	draw_tile(t_game *game, int grid_col, int grid_row,
-		unsigned int color);
+			unsigned int color);
 void	draw_player(t_game *game);
 void	draw_minimap_edge(t_game *game);
 
 /* minimap_rays.c */
+/*render/minimap/dda_logic.c*/
+double	get_delta_dist(double ray_dir);
+void	set_minimap_ray(t_game *game, t_ray *ray,
+			double dir_x, double dir_y);
 void	draw_ray_line(t_game *game, t_ray *ray);
 void	single_ray_loop(t_game *game, double dir_x, double dir_y);
 void	draw_all_rays(t_game *game);
