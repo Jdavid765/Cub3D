@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/20 20:18:03 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/20 20:21:04 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,8 @@ void	free_mlx(t_game *game);
 
 /* exit.c */
 void	exit_all(t_game *game);
+
+void	init(t_game *game);
 
 /* -------------------------------------------------------------------------- */
 /*                           RENDER — declarations                            */
