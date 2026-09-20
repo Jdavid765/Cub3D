@@ -6,10 +6,9 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/09/20 20:12:21 by canoduran        ###   ########.fr        #
+#    Updated: 2026/09/20 20:19:36 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 # --- COLORS ---
 RED      = \033[0;31m
@@ -21,7 +20,7 @@ RESET    = \033[0m
 OS        = $(shell uname)
 CC        = cc
 NAME      = cub3d
-CFLAGS    = -Wall -Wextra -Werror -I include -I mlx -I libft -I get_next_line
+CFLAGS    = -Wall -Wextra -Werror -I include -I mlx -I libft -I get_next_line -g
 LIBFT_DIR = libft
 LIBFT     = $(LIBFT_DIR)/libft.a
 GNL_DIR   = get_next_line
@@ -29,14 +28,13 @@ MLX_DIR   = mlx
 MLX       = $(MLX_DIR)/libmlx.a
 
 # --- DIRECTORIES ---
-DIR_SRC     = src
-DIR_MAP     = $(DIR_SRC)/map
-DIR_RENDER  = $(DIR_SRC)/render
-DIR_PARSING = $(DIR_SRC)/parsing
-DIR_CLEAR   = $(DIR_SRC)/clear
-DIR_MINIMAP = $(DIR_RENDER)/minimap
-DIR_RENDER3D = $(DIR_RENDER)/render_3d
-OBJ_DIR     = obj
+DIR_SRC        = src
+DIR_RENDER     = $(DIR_SRC)/render
+DIR_PARSING    = $(DIR_SRC)/parsing
+DIR_CLEANUP    = $(DIR_SRC)/cleanup
+DIR_MINIMAP    = $(DIR_RENDER)/minimap
+DIR_RAYCASTING = $(DIR_RENDER)/raycasting
+OBJ_DIR        = obj
 
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
@@ -44,15 +42,18 @@ SRC = $(DIR_SRC)/main.c \
 	$(DIR_MAP)/take_map.c \
 	$(DIR_MAP)/pad_map.c \
 	$(DIR_SRC)/init.c \
+	$(DIR_PARSING)/check_filename.c \
+	$(DIR_PARSING)/read_file.c \
+	$(DIR_PARSING)/build_map.c \
 	$(DIR_PARSING)/check_map.c \
 	$(DIR_PARSING)/check_players.c \
 	$(DIR_PARSING)/floodfil.c \
-	$(DIR_PARSING)/parse_elements.c\
-	$(DIR_PARSING)/parse_utils.c\
-	$(DIR_CLEAR)/clear_core.c \
-	$(DIR_CLEAR)/utils.c \
+	$(DIR_PARSING)/parse_elements.c \
+	$(DIR_PARSING)/parse_utils.c \
+	$(DIR_CLEANUP)/free.c \
+	$(DIR_CLEANUP)/exit.c \
 	$(DIR_RENDER)/player.c \
-	$(DIR_RENDER)/init_game.c \
+	$(DIR_RENDER)/init_mlx.c \
 	$(DIR_RENDER)/hooks.c \
 	$(DIR_RENDER)/hooks_key.c \
 	$(DIR_RENDER3D)/textures.c \
@@ -112,7 +113,7 @@ $(LIBFT):
 	@make -s -C $(LIBFT_DIR) --no-print-directory
 
 $(MLX):
-	@make -s -C $(MLX_DIR) CFLAGS="-std=gnu89 -O2" libmlx.a --no-print-directory; true
+	@make -s -C $(MLX_DIR) --no-print-directory
 
 $(NAME): $(LIBFT) $(MLX) $(OBJ) $(GNL_OBJ)
 	@echo

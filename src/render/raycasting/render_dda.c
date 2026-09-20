@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_utils.c                                    :+:      :+:    :+:   */
+/*   render_dda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,27 +13,25 @@
 #include "cub3d.h"
 
 /*
-	cette fonction sert à bien positionner la minimap par rapport
-	au joueur en calculant le décalage entre
-	la position du joueur et le centre de l'image
+	fonction that basically render every ray thrown to the player position
+	and do the dda and fill every pixel line right in the image buffer
 */
-int	get_cam_offset(double player_pos, int board_size)
+void	render_dda(t_game *game)
 {
-	double	offset;
+	t_ray	ray;
+	int		x;
+	double	cam_x;
+	double	dir_x;
+	double	dir_y;
 
-	offset = (player_pos *(MINIMAP_TILE / 2) - (board_size / 2));
-	return ((int)offset);
-}
-
-/*
-	cette fonction sert à ne pas imprimer les cases qui sont
-	au-delà de 3 cases par rapport au joueur
-*/
-int	is_minimap_range(t_game *game, int col, int row)
-{
-	if (col < ((int)game->player.x - 4) || col > ((int)game->player.x + 3))
-		return (0);
-	else if (row < ((int)game->player.y - 4) || row > ((int)game->player.y + 3))
-		return (0);
-	return (1);
+	x = 0;
+	while (x < WIN_WIDTH)
+	{
+		cam_x = 2.0 * x / (double)WIN_WIDTH - 1.0;
+		dir_x = game->player.dir_x + game->player.plane_x * cam_x;
+		dir_y = game->player.dir_y + game->player.plane_y * cam_x;
+		cast_ray(game, &ray, dir_x, dir_y);
+		draw_wall(game, &ray, x);
+		x++;
+	}
 }

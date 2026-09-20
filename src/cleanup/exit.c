@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_core.c                                       :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 21:39:37 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/17 17:00:50 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/20 20:18:40 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
-void	ft_exit(t_game *game)
+/*
+ * Release everything the game allocated ,in one place.
+ * Called on ESC and on any early error in main.
+ */
+void	exit_all(t_game *game)
 {
 	free_grid(game);
 	free(game->texture.no);

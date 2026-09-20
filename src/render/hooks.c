@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
+/*   By: pucci17pinker <pucci17pinker@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:30:00 by pucci17pink       #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/09/17 14:05:16 by canoduran        ###   ########.fr       */
+=======
+/*   Updated: 2026/08/31 16:21:10 by pucci17pink      ###   ########.fr       */
+>>>>>>> link_features
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +66,8 @@ int	hook_loop(void *param)
 		game->buffer_pitch * WIN_HEIGHT * sizeof(unsigned int));
 	render_dda(game);
 	render_minimap(game);
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->frame_image, 0, 0);
+	mlx_put_image_to_window(game->mlx.mlx_ptr,
+		game->mlx.win_ptr, game->frame_image, 0, 0);
 	usleep(16000);
 	return (0);
 }
