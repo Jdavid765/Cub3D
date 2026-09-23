@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/23 03:13:46 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/23 03:28:43 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ void			init(t_game *game);
 
 /*clear/clear_core.c*/
 void			ft_exit(t_game *game);
-int				close_game(int keycode, void *param);
+int				close_game(void *param);
 
 /* -------------------------------------------------------------------------- */
 /*                           CLEANUP — declarations                           */
