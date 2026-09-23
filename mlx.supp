@@ -1,0 +1,18 @@
+{
+   mlx_leaks
+   Memcheck:Leak
+   ...
+   fun:mlx_*
+}
+{
+   x11_leaks
+   Memcheck:Leak
+   ...
+   obj:*/libX11.so.*
+}
+{
+   xext_leaks
+   Memcheck:Leak
+   ...
+   obj:*/libXext.so.*
+}

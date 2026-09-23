@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/07 12:30:00 by pucci17pink       #+#    #+#             */
-/*   Updated: 2026/09/20 20:58:17 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/09/23 03:24:56 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	init_mlx_win(t_game *game)
 	mlx_loop_hook(game->mlx.mlx_ptr, hook_loop, game);
 	mlx_hook(game->mlx.win_ptr, 2, 1L << 0, key_press, game);
 	mlx_hook(game->mlx.win_ptr, 3, 1L << 1, key_release, game);
+	mlx_hook(game->mlx.win_ptr, 17, 0,
+		(int (*)(int, void *))(void *)close_game, game);
 	mlx_loop(game->mlx.mlx_ptr);
 	return (0);
 }
