@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 09:48:29 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/20 20:18:18 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/10/07 18:29:45 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	main(int ac, char **av)
 		return (printf("Is not a .cub\n"), 1);
 	if (cub3d(&game))
 		return (exit_all(&game), 1);
+	if (ft_look_map(&game))
+		return(ft_exit(&game), printf("Error in the map cell is not valid\n"), 1);
 	set_player_direction(&game);
 	if (init_mlx_win(&game))
 		return (ft_exit(&game), printf("Error: MLX init failed\n"), 1);

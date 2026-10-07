@@ -6,11 +6,9 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 12:21:40 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/17 17:00:37 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/10/07 17:26:49 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../include/cub3d.h"
 
 #include "../../include/cub3d.h"
 

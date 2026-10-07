@@ -6,7 +6,7 @@
 #    By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/02 18:24:35 by pucci17pink       #+#    #+#              #
-#    Updated: 2026/09/20 21:00:16 by canoduran        ###   ########.fr        #
+#    Updated: 2026/10/07 17:28:23 by canoduran        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ MLX       = $(MLX_DIR)/libmlx.a
 
 # --- DIRECTORIES ---
 DIR_SRC        = src
+DIR_MAP        = $(DIR_SRC)/map
 DIR_RENDER     = $(DIR_SRC)/render
 DIR_PARSING    = $(DIR_SRC)/parsing
 DIR_CLEANUP    = $(DIR_SRC)/cleanup
@@ -40,6 +41,7 @@ OBJ_DIR        = obj
 # --- SOURCES ---
 SRC = $(DIR_SRC)/main.c \
 	$(DIR_SRC)/init.c \
+	$(DIR_MAP)/edge_case.c \
 	$(DIR_PARSING)/check_filename.c \
 	$(DIR_PARSING)/read_file.c \
 	$(DIR_PARSING)/build_map.c \

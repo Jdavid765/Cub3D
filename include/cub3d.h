@@ -6,7 +6,7 @@
 /*   By: canoduran <canoduran@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:59:58 by canoduran         #+#    #+#             */
-/*   Updated: 2026/09/23 03:28:43 by canoduran        ###   ########.fr       */
+/*   Updated: 2026/10/07 17:23:17 by canoduran        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ int				split_config_and_map(t_game *game, char **raw, int total_lines);
 int				open_file(t_game *game);
 int				count_l(int fd);
 char			**read_all_lines(int fd, int total_lines);
+int				ft_look_map(t_game *game);
 
 /*src/map/pad_map.c*/
 void			strip_newline(char *line);
