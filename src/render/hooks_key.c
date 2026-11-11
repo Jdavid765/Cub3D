@@ -33,7 +33,9 @@ int	is_wall(t_game *game, double x, double y)
  */
 void	slide_move(t_game *game, double move_x, double move_y)
 {
-	if (!is_wall(game, game->player.x + move_x, game->player.y + move_y))
+	if (!is_wall(game, game->player.x + move_x, game->player.y + move_y)
+		&& !is_wall(game, game->player.x + move_x, game->player.y)
+		&& !is_wall(game, game->player.x, game->player.y + move_y))
 	{
 		game->player.x += move_x;
 		game->player.y += move_y;
